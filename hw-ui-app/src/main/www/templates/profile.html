@@ -1,0 +1,218 @@
+<ion-view title="{{ label.profile.title }}" class=" ">
+    <div class="bar bar-subheader secondSubHeaderColor langImagePadding">
+        <div>
+            <div>
+                <span style="float:right" ng-click="openModal()">{{ label.common.fontSizeText }}
+                    <span class="font-size-8" ng-class="{selectedFont:smallFont}" style="padding-left:4px;">{{ label.common.optionsFontText }}</span>
+                <span class="font-size-10" ng-class="{selectedFont:normalFont}" style="padding-left:4px;">{{ label.common.optionsFontText }}</span>
+                <span class="font-size-12" style="padding-left:4px;" ng-class="{selectedFont:largeFont}">{{ label.common.optionsFontText }}</span>
+                </span>
+                <div class="clearFix"></div>
+            </div>
+        </div>
+    </div>
+    <ion-content style="margin-top:14%" id="profileContent" padding="true" class="has-header has-footer" scroll="true" overflow-scroll="true">
+        <form class="list " name="myForm" ng-submit="submit()" ng-controller="profileCtrl">
+            <div style="">
+                <div>
+                    <div class="floatLeftAndWidth48">
+                        <label class="item-input inputLabel">
+                            <input ng-model="fName" type="text" placeholder="{{ label.common.firstNameText }}">
+                        </label>
+                    </div>
+                    <div class="floatRightAndWidth48">
+                        <label class="item-input inputLabel">
+                            <input ng-model="lName" type="text" placeholder="{{ label.common.lastNameText }}">
+                        </label>
+                    </div>
+                </div>
+                <div class="clearFix"></div>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+            <label style="border:none;padding:5px" class="item item-input borderBottom">
+                <span class="input-label selectLabel" style="width:45%">{{ label.common.dateOfBirthText }}</span>
+                <input ng-model="dob" readonly type="date" style="text-align:center;padding-right:0px">
+            </label>
+            <div class="seperatorDiv spacer"></div>
+            <label style="border:none;padding:5px" class="item borderBottom  item-select">
+                <span class="input-label selectLabel" style="width:45%;">{{ label.common.sexText }}</span>
+                <select class="" ng-model="gender" ng-disabled=true>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
+            </label>
+            <div class="seperatorDiv spacer"></div>
+            <label class="item-input inputLabel">
+                <phonenumber-directive placeholder="myModel.phonenumber | phonenumber" model='myModel.phonenumber'></phonenumber-directive>
+            </label>
+
+            <div class="seperatorDiv spacer"></div>
+            <label class="item-input inputLabel">
+                <input type="text" ng-model="address" placeholder="{{ label.profile.addressText }}">
+            </label>
+            <div class="seperatorDiv spacer"></div>
+            <label class="item-input inputLabel">
+                <input ng-model="city" maxlength="20" type="text" placeholder="{{ label.common.cityText }}">
+            </label>
+            <div class="seperatorDiv spacer"></div>
+            <label class="item-input inputLabel">
+                <input ng-model="zipCode" type="number" placeholder="{{ label.common.zipcodeText }}" ng-blur="getPharmacy()">
+            </label>
+            <div class="seperatorDiv spacer"></div>
+            <label class="inputLabel item-input">
+                <input type="text" ng-model="promo" placeholder="{{ label.register.promoCodeInputText }}" ng-blur="promoValidation=false" ng-focus="promoValidation=true">
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="promoValidation">
+                <span class="error" ng-show="!promoverifyvar" style="color:red">
+       "Promo Code is not valid!!"</span>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+
+            <ion-checkbox class="borderBottom font-size-16" style="border:none;" ng-model="primaryPhysician">{{ label.profile.primaryPhysicianCHeckText }}</ion-checkbox>
+            <label ng-show="primaryPhysician" class="inputLabel item-input">
+                <input type="text" ng-model="primaryPhysicianName" placeholder="{{ label.profile.enterPrimaryPhysicianText }}">
+            </label>
+            <div class="seperatorDiv spacer"></div>
+            <ion-checkbox class="borderBottom font-size-14" style="border:none;" ng-show="primaryPhysician" ng-model="physicianConsent">{{ label.profile.consentCheckText }}</ion-checkbox>
+            <label class="inputLabel item-input">
+                <ion-search-select style="width:95%" title="Search a Pharmacy" key-property="id" value-property="name" options="pharmacyList.data.data.results" option-selected="primaryPharmacy">
+                    <label class="item item-input-inset" style="border:none;padding: 0px;cursor: pointer;">
+                        <div class="item-input-wrapper">
+                            <i class="icon ion-ios-search"></i>
+                            <input type="text" ng-model="primaryPharmacy.name" placeholder="{{ label.profile.preferedPharmacyText }}" disabled>
+                        </div>
+                    </label>
+                </ion-search-select>
+            </label>
+            <label class="inputLabel item-input">
+                <ion-search-select style="width:95%" title="Search a Pharmacy" key-property="id" value-property="name" options="pharmacyList.data.data.results" option-selected="backupPharmacy">
+                    <label class="item item-input-inset" style="border:none;padding: 0px;cursor: pointer;">
+                        <div class="item-input-wrapper">
+                            <i class="icon ion-ios-search"></i>
+                            <input type="text" ng-model="backupPharmacy.name" placeholder="{{ label.profile.backupPharmacyText }}" disabled>
+                        </div>
+                    </label>
+                </ion-search-select>
+            </label>
+            <div class="seperatorDiv spacer"></div>
+            <label class="inputLabel item-input">
+                <ion-search-select style="width:95%" title="Search a Pharmacy" key-property="id" value-property="name" options="pharmacyList.data.data.results" option-selected="mailOrderPharmacy">
+                    <label class="item item-input-inset" style="border:none;padding: 0px;cursor: pointer;">
+                        <div class="item-input-wrapper">
+                            <i class="icon ion-ios-search"></i>
+                            <input type="text" ng-model="mailOrderPharmacy.name" placeholder="{{ label.profile.mailOrderPharmacyText }}" disabled>
+                        </div>
+                    </label>
+                </ion-search-select>
+            </label>
+
+            <div class="spacer seperatorDiv"></div>
+            <label class="inputLabel item-input">
+                <input type="text" ng-model="nextOfKin" placeholder="{{ label.profile.nextOfKinText }}">
+            </label>
+            <div class="spacer seperatorDiv"></div>
+            <ion-checkbox class="borderBottom font-size-16" style="border:none;" ng-model="Insurance">{{ label.profile.insuracnceCheckText }}</ion-checkbox>
+            <label ng-show="Insurance" class="inputLabel item-input">
+                <ion-search-select style="width:95%" title="Search an Insurance Provider" key-property="id" value-property="name" options="itemArray" option-selected="primaryInsurance">
+                    <label class="item item-input-inset" style="border:none;padding: 0px;cursor: pointer;">
+                        <div class="item-input-wrapper">
+                            <i class="icon ion-ios-search"></i>
+                            <input type="text" ng-model="primaryInsurance.name" placeholder="Search a Primary Insurance Provider" disabled>
+                        </div>
+                    </label>
+                </ion-search-select>
+            </label>
+            <label ng-show="Insurance" class="inputLabel item-input">
+                <ion-search-select style="width:95%" title="Search an Insurance Provider" key-property="id" value-property="name" options="itemSecondArray" option-selected="secondaryInsurance">
+                    <label class="item item-input-inset" style="border:none;padding: 0px;cursor: pointer;">
+                        <div class="item-input-wrapper">
+                            <i class="icon ion-ios-search"></i>
+                            <input type="text" ng-model="secondaryInsurance.name" placeholder="Search a Secondary Insurance Provider" disabled>
+                        </div>
+                    </label>
+                </ion-search-select>
+            </label>
+            <button type="submit" ng-disabled="myForm.$invalid" class=" button button-positive  button-block buttonColor font-size-12" ng-click="updateProfile()">{{ label.profile.profileUpdateButtonText }}</button>
+            <div class="rightAlign">
+                <button class=" button button-positive  button-block button-clear skipButton" ui-sref="menu.dashboard">Skip</button>
+            </div>
+        </form>
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+<script id="fontModal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="headerColor">
+            <h1 class="title" style="color:#fff">{{ label.common.fontSizeText }}</h1>
+        </ion-header-bar>
+        <ion-content style="margin-top:10%">
+            <ion-radio name="fontGroup" ng-model="fontSize" ng-click="addCSS('smaller')" ng-value="'smaller'"><span class="font-size-8">{{ label.common.optionsFontText }}</span></ion-radio>
+            <ion-radio name="fontGroup" ng-model="fontSize" ng-click="addCSS('normal')" ng-value="'normal'"> <span class="font-size-10">{{ label.common.optionsFontText }}</span></ion-radio>
+            <ion-radio name="fontGroup" ng-model="fontSize" ng-click="addCSS('large')" ng-value="'large'"><span class="font-size-12">{{ label.common.optionsFontText }}</span></ion-radio>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<script id="langModal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="headerColor">
+            <h1 class="title" style="color:#fff">{{ label.common.languageSelectionTitle }}</h1>
+        </ion-header-bar>
+        <ion-content class="languageModalContent">
+            <ion-radio name="languageGroup" ng-model="language" ng-click="closeLangModal('english')" ng-value="'english'"> <span class="font-size-14">{{ label.common.english }}</span></ion-radio>
+            <ion-radio name="languageGroup" ng-model="language" ng-click="closeLangModal('spanish')" ng-value="'spanish'"> <span class="font-size-14">{{ label.common.spanish }}</span></ion-radio>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="templates/searchSelect.html" type="text/ng-template">
+    <ion-modal-view id="searchModal">
+        <ion-header-bar class="headerColor">
+            <button class="button button-icon ion-close" ng-click="closeModal();"></button>
+            <h1 class="title" style="" ng-if="searchSelect.enableSearch">
+            <label class="item item-icon-left" style="height: 100%;top: 0px;margin-top:5px;padding: 0px 0px 0px 32px !important;background:#fff">
+              <i class="icon ion-android-search font-size-20" style="left: 0 !important;top: 0px;"></i>
+              <input type="text" placeholder="{{searchSelect.title}}" ng-model="searchSelect.searchvalue" style="width: 90%;height: 100%;margin-top: 0px;padding-top:5px" />
+            </label>
+            <i ng-if="searchSelect.searchvalue.length > 0" on-tap="clearSearch()" class="icon ion-close" style="top:2px;right: 5px;position:absolute;cursor:pointer;z-index: 2;"></i>
+          </h1>
+            <h1 class="title" ng-if="!searchSelect.enableSearch">{{ searchSelect.title }}</h1>
+        </ion-header-bar>
+        <ion-content ng-controller="profileCtrl">
+            <ion-list id="pharmacyList">
+
+                <ion-item ng-if="searchSelect.keyProperty && searchSelect.valueProperty">
+                    <ion-radio collection-repeat="option in options | filter: searchSelect.searchvalue" item-height="55px" item-width="100%" ng-value="option[searchSelect.keyProperty]" ng-click="saveOption()" ng-checked="option[searchSelect.selectedProperty]" ng-model="searchSelect.option">
+                        {{ option[searchSelect.valueProperty] }}
+                    </ion-radio>
+                </ion-item>
+                <ion-item ng-if="!searchSelect.keyProperty || !searchSelect.valueProperty">
+                    <ion-radio collection-repeat="option in options | filter: searchSelect.searchvalue" item-height="55px" ng-value="option" item-width="100%" ng-click="saveOption()" ng-model="searchSelect.option">
+                        {{ option }}
+                    </ion-radio>
+                </ion-item>
+
+            </ion-list>
+            <ion-infinite-scroll on-infinite="loadMore()" distance="10%" ng-if="!noLoadMore">
+            </ion-infinite-scroll>
+
+        </ion-content>
+    </ion-modal-view>
+</script>

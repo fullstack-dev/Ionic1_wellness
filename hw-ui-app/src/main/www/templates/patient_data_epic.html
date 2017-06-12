@@ -1,0 +1,23 @@
+<ion-view style="background-color: white;" class=" " title="{{ label.patient.title }}">
+    <ion-content class="paddingPage" overflow-scroll="true">
+        <label style="color: #737370;">Name</label>
+        <p style="color: #40b2ba;" class="font-size-18">{{name}}</p>
+        <div class="spacer seperatorDiv"></div>
+
+        <label style="color: #737370;">Birthday</label>
+        <p style="color: #40b2ba;" class="font-size-18">{{birthday}}</p>
+        <div class="spacer seperatorDiv"></div>
+
+        <label style="color: #737370;">Gender</label>
+        <p style="color: #40b2ba;" class="font-size-18">{{gender}}</p>
+        <div class="spacer seperatorDiv"></div>
+        
+        <button class="downloadButton font-size-12" style="background-color: #71c99a;" on-tap="view_data()">VIEW DATA</button> 
+
+        <button class="downloadButton font-size-12" style="background-color: #a9a5d2;" on-tap="download_continuity_of_care_document()">DOWNLOAD CONTINUITY OF CARE DOCUMENT</a>
+
+        <button class="downloadButton font-size-12" style="background-color: #41c4cd;" on-tap="view_medical_records()">VIEW MEDICAL RECORDS</a>
+
+        <button class="downloadButton font-size-12" style="background-color: #ffbb45;" on-tap="download_medical_records()">DOWNLOAD MEDICAL RECORDS</a>
+    </ion-content>
+</ion-view>

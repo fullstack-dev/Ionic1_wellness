@@ -1,0 +1,60 @@
+<ion-view style="" class=" " title="{{ label.dibetesView.title }}">
+    <app-header></app-header>
+    <ion-content class="has-header has-footer contentMargin" padding="false" ng-controller="diabetesEditCtrl">
+
+        <div style="padding:10px 10px 5px 10px;">
+
+            <form name="myform" ng-submit="submit()">
+
+                <ion-checkbox class="borderBottom font-size-12" ng-model="diabetesInheritance" style="">{{ label.diabetesEditView.relativeDiabetesInfoText }}</ion-checkbox>
+
+
+                <ion-checkbox ng-show="UserData.user.gender=='Female'" class="borderBottom font-size-12" ng-model="diabetesFemaleEthnic" style="">{{ label.diabetesEditView.ethinicCheckText }} </ion-checkbox>
+
+
+                <label class="item-input borderBottom">
+                    <span style="width:45%" class="input-label">{{ label.diabetesEditView.HbAText }} </span>
+                    <input ng-model="HbA" name="HbA" type="number" ng-focus="HbAText=true" ng-blur="HbAText=false" placeholder=" (in %)" style="text-align:right" min="0" required>
+                </label>
+                <div role="alert" style="padding:5px" ng-show="!HbAText">
+                    <span class="error font-size-10" ng-show="myform.HbA.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                </div>
+                <div class="seperatorDiv spacer"></div>
+                <label class="item-input borderBottom">
+                    <span style="width:45%" class="input-label">{{ label.diabetesEditView.glucoseLevelText }}</span>
+                    <input type="number" ng-model="glucoseLevel" ng-focus="glucoseLevelText=true" ng-blur="glucoseLevelText=false" name="glucoseLevel" placeholder="(in 100-125 mg/dL) " style="text-align:right" min="1" required>
+                </label>
+                <div role="alert" style="padding:5px" ng-show="!glucoseLevelText">
+                    <span class="error font-size-10" ng-show="myform.glucoseLevel.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                </div>
+                <div class="seperatorDiv spacer"></div>
+                <ion-checkbox class="borderBottom font-size-12" ng-show="glucoseLevel>=100" ng-model="manyOcasionLevel" style="border:none;">{{ label.diabetesEditView.fastingGlucoseCheckText }}</ion-checkbox>
+                <div class="seperatorDiv spacer"></div>
+                <button type="submit" ng-click="editDiabetes()" ng-disabled="myform.$invalid" class=" button button-assertive  button-block buttonColor font-size-12">{{ label.common.saveText }}</button>
+
+            </form>
+
+        </div>
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,64 @@
+<ion-view style="" class=" " title="{{ label.bmiView.title }}">
+    <app-header></app-header>
+    <ion-content id="" class="has-header contentMargin has-footer" padding="false" ng-controller="bmiEditCtrl">
+
+        <div style="padding:10px 10px 5px 10px;">
+
+            <form name="myform" ng-submit="submit()">
+                <label style="border:none;padding:5px" class="item  item-select">
+                    <span class="input-label selectLabel" style="width:45%;">{{ label.bmiEditView.weightText }}</span>
+                    <select class="" ng-change="changeMass()" ng-model="weightUnit">
+                        <option value="kg">kg</option>
+                        <option value="lb">lb</option>
+                    </select>
+                </label>
+
+                <label class="item-input inputLabel">
+                    <input ng-model="weight" ng-focus="weightText=true" ng-blur="weightText=false" name="weight" type="number" placeholder="{{ label.bmiEditView.enterWeightText }}" min="1" required>
+                </label>
+                <div role="alert" style="padding:5px" ng-show="!weightText">
+                    <span class="error font-size-10" ng-show="myform.weight.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                </div>
+                <div class="seperatorDiv spacer"></div>
+
+                <label style="border:none;padding:5px" class="item  item-select">
+                    <span class="input-label selectLabel" style="width:45%;">{{ label.bmiEditView.heightText }}</span>
+                    <select class="" ng-change="changeHeight()" ng-model="heightUnit">
+                        <option value="in">in</option>
+                        <option value="cm">cm</option>
+                    </select>
+                </label>
+                <label class="item-input inputLabel">
+                    <input ng-model="height" ng-focus="heightText=true" ng-blur="heightText=false" name="height" type="number" placeholder="{{ label.bmiEditView.enterHeightText }}" min="1" required>
+                </label>
+                <div role="alert" style="padding:5px" ng-show="!heightText">
+                    <span class="error  font-size-10" ng-show="myform.height.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                </div>
+                <div class="seperatorDiv spacer"></div>
+                <button type="submit" ng-click="bmiCalc()" ng-disabled="myform.$invalid" class=" button button-assertive  button-block buttonColor font-size-12">{{ label.common.saveText }}</button>
+            </form>
+
+        </div>
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

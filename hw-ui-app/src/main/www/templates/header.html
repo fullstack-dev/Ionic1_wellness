@@ -1,0 +1,83 @@
+<div ng-show="patient" class="bar bar-subheader firstSubHeaderColor darkGreenBackground">
+
+    <div ng-show="checkUpDoneIndicator" style="height:100%" class="checkupPadding">
+
+        <div class="centerAlign subHeaderDiv" style="height:100%">
+            <div ui-sref="menu.lastHealthCheckup" class="font-size-12 checkUpDue greenBackground">
+                <div>{{ lastHealthCheckup }} {{ lastHealthMonth }} {{ lastHealthYear }}</div>
+            </div>
+            <div ui-sref="menu.findAPhysician" class="finPhysicianHeaderSection"><img src="img/findaphy.png" class="physicianImage" style="">
+                <div style="margin-top: -5px;" class="ng-binding font-size-10">{{ label.sideMenu.findAphysicianText }}</div>
+            </div>
+        </div>
+
+        <div class="clearFix"></div>
+    </div>
+    <div ng-show="checkUpDueIndicator" style="height:100%" class="checkupPadding">
+
+        <div class="centerAlign subHeaderDiv" style="height:100%">
+            <div ui-sref="menu.lastHealthCheckup" class="font-size-12 checkUpDue redBackground">
+                <div>{{ label.common.checkupDueText }} {{ lastHealthMonth }} {{ lastHealthYear }}</div>
+            </div>
+            <div ui-sref="menu.findAPhysician" class="finPhysicianHeaderSection"><img src="img/findaphy.png" class="physicianImage" style="">
+                <div style="margin-top: -5px;" class="ng-binding font-size-10">{{ label.sideMenu.findAphysicianText }}</div>
+            </div>
+        </div>
+
+        <div class="clearFix"></div>
+    </div>
+    <div ng-show="checkUpNotDoneIndicator" class="checkupPadding">
+
+        <div class="centerAlign subHeaderDiv" href="#/side-menu21/lastHealthCheckup">
+            <div ui-sref="menu.lastHealthCheckup" class="font-size-10 checkUpNotDone" style="">
+                <div>{{ label.dashboard.lastWellnessExamText }}</div>
+                <div style="
+    margin-top: 7px;
+">{{ label.common.wellnessDataNotAvailable }}</div>
+            </div>
+            <div ui-sref="menu.findAPhysician" class="finPhysicianHeaderSection"><img src="img/findaphy.png" class="physicianImage" style="">
+                <div style="margin-top: -5px;" class="ng-binding font-size-10">{{ label.sideMenu.findAphysicianText }}</div>
+            </div>
+        </div>
+
+        <div class="clearFix"></div>
+    </div>
+</div>
+<div ng-show="employee" ng-class="{darkGreenBackground:examNotTaken,darkGreenBackground:examTaken,greenBackground:examCompleted}" class="bar bar-subheader employeeSubHeader">
+    <div ng-show="examNotTaken" class="examNotTakenPadding headerMargin">
+
+        <div class="centerAlign subHeaderDiv">
+            <div style="color:coral" class="font-size-12 lineHeightWellnessExamNotTaken">{{ label.common.employerWellnessExamText }}</div>
+            <div style="color:coral;" class="font-size-12 lineHeightWellnessExamNotTaken">{{ label.dashboard.wellnesExamNominatedText }}</div>
+            <div style="text-align:right;margin-top:-5px">
+                <a ui-sref="menu.wellness" class=" button button-assertive  button-block headerButton font-size-11">{{ label.dashboard.examTakenButtonText }}</a>
+                <a ui-sref="menu.findAPhysician" class=" button button-assertive  button-block headerButton font-size-11">{{ label.sideMenu.findAphysicianText }}</a></div>
+        </div>
+
+        <div class="clearFix"></div>
+    </div>
+
+    <div ng-show="examTaken" class="headerMargin" style="padding:5px">
+
+        <div class="centerAlign subHeaderDiv" style="float:left;width:75%">
+            <div style="color:#fff;" class="font-size-12 examtakenDateText">{{ label.dashboard.lastWellnessExamText }} {{ examTakenDate }}</div>
+            <div style="color:#fff;text-align: justify;margin-top: 5px;" class="font-size-10 examTakenPhysicianText">{{ label.dashboard.thanksText }} {{ examTakenDate }}. {{ label.dashboard.sentNotifyText1 }} {{ userExamPhysicianName }} {{ label.dashboard.sentNotifyText2 }}</div>
+        </div>
+        <div style="float:right;width:25%" ui-sref="menu.findAPhysician" class=""><img src="img/findaphy.png" class="empPhysicianImage">
+            <div style="" class="ng-binding font-size-8 findPhysicianText">{{ label.sideMenu.findAphysicianText }}</div>
+        </div>
+
+        <div class="clearFix"></div>
+    </div>
+
+    <div ng-show="examCompleted" class="headerMargin" style="padding:0">
+        <div class="centerAlign subHeaderDiv font-size-12" style="float:left;width:70%;margin-top: 5%;">{{ label.common.wellnessExamCompletedText }} {{ examTakenDate }}</div>
+        <div style="float:right;width:25%" ui-sref="menu.findAPhysician" class=""><img src="img/findaphy.png" class="empPhysicianImage">
+            <div style="" class="ng-binding font-size-8 findPhysicianText">{{ label.sideMenu.findAphysicianText }}</div>
+        </div>
+        <div class="clearFix"></div>
+    </div>
+
+
+
+</div>

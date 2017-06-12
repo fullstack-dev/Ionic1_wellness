@@ -1,0 +1,19 @@
+<ion-view style="background-color: #1f222b;" title="{{ label.patient.title }}">
+    <ion-content scroll="true">          
+        <ion-label color="primary">Name</ion-label>
+        <p>{{name}}</p>
+        <div class="spacer seperatorDiv"></div>
+
+        <ion-label color="primary">Birthday</ion-label>
+        <p>{{birthday}}</p>
+        <div class="spacer seperatorDiv"></div>
+
+        <ion-label color="primary">Gender</ion-label>
+        <p>{{gender}}</p>
+        <div class="spacer seperatorDiv"></div>
+        
+        <a style="background-color: #4FBA72;" on-tap="patient_data()">Cerner Patient Data</a>
+        <div class="spacer seperatorDiv"></div>
+        <a class=" button button-assertive  button-block buttonColor font-size-14" on-tap="goToFirst()">Go To Log in</a>
+    </ion-content>
+</ion-view>

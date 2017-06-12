@@ -1,0 +1,88 @@
+<ion-view style="" class=" " title="Immunization Registry" hide-back-button="true" id="login">
+    <app-header></app-header>
+    <ion-content class="has-header" style="margin-top: 5%;" scroll="false" padding="true">
+        <div id="page-wrapper">
+
+            <p class="font-size-20" style="color: #959dac;">Search your insurance provider</p>
+            <div class="spacer seperatorDiv"></div>
+
+            <p class="font-size-18" for="default" style="color: #474b5a;">Search by state...</p>
+            <div class="list">
+                <label class="item item-input item-select" >
+                    <div class="input-label">
+                        &nbsp;
+                    </div>
+                    <select id="selected_state" style="color: #3cb0b8;">
+                        <option value="" selected>Choose a state...</option>
+                        <option>Alabama</option>
+                        <option>Alaska</option>
+                        <option>Arizona</option>
+                        <option>Arkansas</option>
+                        <option>California</option>
+                        <option>Colorado</option>
+                        <option>Connecticut</option>
+                        <option>Delaware</option>
+                        <option>Florida</option>
+                        <option>Georgia</option>
+                        <option>Hawaii</option>
+                        <option>Idaho</option>
+                        <option>Illinois</option>
+                        <option>Indiana</option>
+                        <option>Iowa</option>
+                        <option>Kansas</option>
+                        <option>Kentucky</option>
+                        <option>Louisiana</option>
+                        <option>Maine</option>
+                        <option>Maryland</option>
+                        <option>Massachusetts</option>
+                        <option>Michigan</option>
+                        <option>Minnesota</option>
+                        <option>Mississippi</option>
+                        <option>Missouri</option>
+                        <option>Montana</option>
+                        <option>Nebraska</option>
+                        <option>Nevada</option>
+                        <option>New Hampshire</option>
+                        <option>New Jersey</option>
+                        <option>New Mexico</option>
+                        <option>New York</option>
+                        <option>North Carolina</option>
+                        <option>North Dakota</option>
+                        <option>Ohio</option>
+                        <option>Oklahoma</option>
+                        <option>Oregon</option>
+                        <option>Pennsylvania</option>
+                        <option>Rhode Island</option>
+                        <option>South Carolina</option>
+                        <option>South Dakota</option>
+                        <option>Tennessee</option>
+                        <option>Texas</option>
+                        <option>Utah</option>
+                        <option>Vermont</option>
+                        <option>Virginia</option>
+                        <option>Washington</option>
+                        <option>West Virginia</option>
+                        <option>Wisconsin</option>
+                        <option>Wyoming</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="spacer seperatorDiv"></div>
+
+            <p class="font-size-18" for="default" style="color: #474b5a;">or search by name</p>
+            <label class="item item-input item-icon-right">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="e.g Arizona" ng-model="searchImmunization">
+            </label>
+            <div class="spacer seperatorDiv"></div>
+
+            <ion-scroll direction="y">          
+                <ul class="list" class="font-size-16" style="padding-left:10px; padding-right: 20px; padding-bottom: 10px; line-height:40px; color: #a5acb6;">      
+                    <li ng-repeat="data in sampleImmunizationData | filter:searchImmunization" ng-click="processingItem(data)">{{data.key}}</li>          
+                </ul> 
+            </ion-scroll>      
+
+        </div>
+    </ion-content>
+</ion-view>

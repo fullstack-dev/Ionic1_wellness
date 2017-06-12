@@ -1,0 +1,9 @@
+<ion-view style="background-color: white" title="Patient CCD Data">
+    <ion-content padding="true" overflow-scroll="true">
+      <ul style="list-style-type:none">
+            <li style="margin-bottom: 3vh;" ng-repeat="e in resource_display track by $index">
+                  <button class="contentUrlButton" ng-click="Url_Click($index)">{{e}}</button>
+            </li>
+      </ul>
+    </ion-content>
+</ion-view>

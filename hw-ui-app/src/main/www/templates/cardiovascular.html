@@ -1,0 +1,94 @@
+<ion-view style="" class=" ">
+
+    <ion-nav-title>{{label.cardiovascularView.title}}</ion-nav-title>
+    <app-header></app-header>
+    <ion-content class="has-header has-footer contentMargin" padding="false">
+        <div class="row" style="padding-top:0px">
+            <div class="col ">
+                <span class="font-size-10" style="float:left">{{ label.common.lastUpdatedText }} {{ lastUpdated }} </span>
+
+            </div>
+        </div>
+        <div class="row" style="">
+            <div class="col healthInfoContainer">
+
+                <span class="healthInfoIndicatorCircle" ng-class="{'healthyIndicator':healthy==true,'riskIndicator':risk==true,'highRiskIndicator':highRisk==true,'NAIndicator':NA==true}"></span>
+                <span class="healthInfoSubject font-size-14">{{ heartRisk }}</span>
+
+            </div>
+        </div>
+        <div class="row" style="margin-top: 1%;">
+            <div class="col" style="text-align: right;">
+                <a class=" button button-assertive  button-block consultPhysicianButton font-size-11" ng-click="findAPhysician()">{{ label.common.consultPhysicianButtonText }}</a>
+                <a class=" button button-assertive button-block modifyButton font-size-11" ng-click="modifyCardiovascular()">{{ label.common.modifyText }}</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col healthInfoIndicatorContainer">
+
+                <span class="healthInfoIndicator healthyIndicator"></span>
+                <span class="healthInfoText margin-right-5px font-size-10">{{ label.common.healthyText }}</span>
+                <span class="healthInfoIndicator riskIndicator"></span>
+                <span class="healthInfoText margin-right-5px font-size-10">{{ label.common.riskText }}</span>
+                <span class="healthInfoIndicator highRiskIndicator"></span>
+                <span class="healthInfoText margin-right-5px font-size-10">{{ label.common.highRiskText }}</span>
+            </div>
+        </div>
+
+        <div class="row" style="padding:0px">
+            <ion-item style="border:none;padding-bottom:10px;background-color:#DCDCDC" class="item-avatar  ">
+                <img class="explanationImage" src="img/bulb.png">
+                <p style="padding:0px;margin:0px" class="font-size-14">{{ label.cardiovascularView.explainHeading }}</p>
+                <p class="font-size-11 explanationInfoContent">{{ MHIInfo }}</p>
+                <a ng-click="openLinkMHI('cardio')" class="font-size-11">{{ label.common.moreText }}...</a>
+            </ion-item>
+
+        </div>
+        <div class="clearFix"></div>
+        <div class="factorSection" style="">
+
+            <div>
+                <span class="font-size-12 factorInvolveHeading" style="">{{ label.cardiovascularView.factorsInvoleHeading }}</span>
+            </div>
+
+            <div class="clearFix"></div>
+
+            <div class="font-size-11" style="padding:5px"> <span>Age: </span><span class="itlaicFont">{{ userAge }} years</span>
+            </div>
+            <div class="font-size-11" style="padding:5px">
+                <span>Gender: </span><span class="itlaicFont">{{ userGender }}</span>
+            </div>
+            <div class="font-size-11" style="padding:5px"> <span> {{ label.cardiovascularView.totalCholestrolText }}</span><span class="itlaicFont">{{ totalCholestrol }} mg/dL</span>
+            </div>
+
+            <div class="font-size-11" style="padding:5px"> <span>{{ label.cardiovascularView.hdlCholestrolText }} </span><span class="itlaicFont">{{ hdlCholestrol }} mg/dL</span>
+            </div>
+
+            <div class="font-size-11" ui-sref="menu.hyperTensionEdit" style="padding:5px"> <span style="margin-top:4px;margin-right:5px" class="healthInfoIndicator" ng-class="{'healthyIndicator':hypertensionhealthy==true,'riskIndicator':hypertensionrisk==true,'highRiskIndicator':hypertensionhighRisk==true,'NAIndicator':hypertensionNA==true}"></span><span>{{ label.cardiovascularView.highBPText }} </span><span class="itlaicFont">{{ bpInfo }}</span><span style="float:right;color:darkgrey"><i class="icon icon ion-edit "></i></span>
+            </div>
+
+            <div class="font-size-11" ui-sref="menu.smokingEdit" style="padding:5px"> <span style="margin-top:4px;margin-right:5px" class="healthInfoIndicator" ng-class="{'healthyIndicator':smokinghealthy==true,'riskIndicator':smokingrisk==true,'highRiskIndicator':smokinghighRisk==true,'NAIndicator':smokingNA==true}"></span><span>{{ label.cardiovascularView.smokingText }} </span><span class="itlaicFont">{{ smoking }}</span><span style="float:right;color:darkgrey"><i class="icon icon ion-edit "></i></span>
+            </div>
+
+        </div>
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

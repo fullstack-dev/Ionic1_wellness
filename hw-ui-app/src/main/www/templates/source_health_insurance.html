@@ -1,0 +1,146 @@
+<ion-view style="" class=" " title="Health Insurance" hide-back-button="false" id="login">
+    <ion-content class="has-header" style="margin-top: 5%;" scroll="false" padding="true">
+        <div id="page-wrapper">
+
+            <p class="font-size-20" style="color: #959dac;">Search your insurance provider</p>
+            <div class="spacer seperatorDiv"></div>
+
+            <p class="font-size-18" for="default" style="color: #474b5a;">Search by state...</p>
+            <div class="list">
+                <label class="item item-input item-select" >
+                    <div class="input-label">
+                        &nbsp;
+                    </div>
+
+<ion-view style="background-color: #1f222b" title="Hospital Insurance">
+    <ion-content scroll="true">
+        <p class="headTitle">Select a healthcare provider you have already connected to</p>
+        
+        <ion-list>
+            <ion-item style="border-bottom: 2px solid #32353E; text-align:center" ng-click="selected_provider_name()">
+                <p style="font-size: 15px; color: #3cb0b8;">{{connected_provider_name}}</p>
+                    <div class="item-icon-right" ng-if="connected_provider_name">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </div>
+            </ion-item>
+            
+            <ion-item style="border-bottom: 2px solid #32353E; text-align:center">
+                <p style="font-size: 15px; color: #3cb0b8;">{{connected_hospital_name}}</p>
+                    <div class="item-icon-right" ng-if="connected_hospital_name">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </div>
+            </ion-item>
+        </ion-list>
+
+        <p class="headTitle">Or choose a new healthcare provider you want to connect to</p>
+
+        <p class="middleTitle">State or Zip Code</p>
+
+        <label class="item item-input item-select" >
+            <select id="selected_state" style="color: #555555;">
+                <option>Alabama</option>
+                <option>Alaska</option>
+                <option>Arizona</option>
+                <option>Arkansas</option>
+                <option>California</option>
+                <option>Colorado</option>
+                <option>Connecticut</option>
+                <option>Delaware</option>
+                <option>Florida</option>
+                <option>Georgia</option>
+                <option>Hawaii</option>
+                <option>Idaho</option>
+                <option>Illinois</option>
+                <option>Indiana</option>
+                <option>Iowa</option>
+                <option>Kansas</option>
+                <option>Kentucky</option>
+                <option>Louisiana</option>
+                <option>Maine</option>
+                <option>Maryland</option>
+                <option>Massachusetts</option>
+                <option>Michigan</option>
+                <option>Minnesota</option>
+                <option>Mississippi</option>
+                <option>Missouri</option>
+                <option>Montana</option>
+                <option>Nebraska</option>
+                <option>Nevada</option>
+                <option>New Hampshire</option>
+                <option>New Jersey</option>
+                <option>New Mexico</option>
+                <option>New York</option>
+                <option>North Carolina</option>
+                <option>North Dakota</option>
+                <option>Ohio</option>
+                <option>Oklahoma</option>
+                <option>Oregon</option>
+                <option>Pennsylvania</option>
+                <option>Rhode Island</option>
+                <option>South Carolina</option>
+                <option>South Dakota</option>
+                <option>Tennessee</option>
+                <option>Texas</option>
+                <option>Utah</option>
+                <option>Vermont</option>
+                <option selected="selected">Virginia</option>
+                <option>Washington</option>
+                <option>West Virginia</option>
+                <option>Wisconsin</option>
+                <option>Wyoming</option>
+            </select>
+        </label>
+
+        <p style="margin-top: 2vh;" class="middleTitle">Provider's Name</p>
+
+        <label class="item item-input item-select">
+            <select id="selected_provider" style="color: white;">
+                <option selected="selected">ADVANTAGE Health Solutions, Inc.</option>
+                <option>Aetna</option>
+                <option>Altius Health Plans</option>
+                <option>Anthem Blue Cross</option>
+                <option>APWU Health Plan</option>
+                <option>AvMed Health Plans, Inc</option>
+                <option>Blue Cross Blue Shield of Florida</option>
+                <option>Blue Cross Blue Shield of Louisiana</option>
+                <option>Blue Cross Blue Shield of Rhode Island</option>
+                <option>Captal Health Plan, Inc.</option>
+                <option>CareFirst BCBS</option>
+                <option>CDPHP Universal Benefits Inc.</option>
+                <option>Centers for Medicare & Medicaid Services(CMS)</option>
+                <option>Coventy Health Care</option>
+                <option>Department of Defense</option>
+                <option>Emblem Health</option>
+                <option>Fallon Community Health Plan</option>
+                <option>Foreign Service Benefit Plan</option>
+                <option>Government Employees Health Association(GEHA)</option>
+                <option>Health Net of California</option>
+                <option>Health Plan of San Joaquin</option>
+                <option>HealthAmerica</option>
+                <option>HealthPartners</option>
+                <option>HealthPlus of Michigan</option>
+                <option>Humana</option>
+                <option>Independence Blue Cross</option>
+                <option>KPS Health Plans</option>
+                <option>LACare</option>
+                <option>Mail Handlers Benefit Plan(MHBP)</option>
+                <option>Optima Health Plan</option>
+                <option>Physicians Health Plan of Northern Indiana</option>
+                <option>Regence</option>
+                <option>Rural Carrier Benefit Plan</option>
+                <option>Special Agents Mutual Benefit Association(SAMBA)</option>
+                <option>UHA (University Health Alliance)</option>
+                <option>United Health Military West</option>
+                <option>UnitedHealth</option>
+                <option>UPMC Health Plan (University of Pittsburgh Medical Center)</option>
+                <option>US Department of Veterans Affairs(Insurance)</option>
+            </select>
+        </label>
+        <div class="spacer seperatorDiv"></div>
+
+        <BUTTON class="updateButton" ng-click="update_function()">UPDATE</BUTTON>
+
+        <p class="underTitle">Don't see your provider listed?<a on-tap="download()" style="color: #4FBA72;">Download from email or scan paper document.</a></p>
+
+    </ion-content>
+</ion-view>

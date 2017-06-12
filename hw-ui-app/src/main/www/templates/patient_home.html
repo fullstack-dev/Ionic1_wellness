@@ -1,0 +1,47 @@
+<ion-view style="background-color: white;" class="" title="{{ label.home.title }}" hide-back-button="true" cache-view="false">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    
+    <ion-content scroll="false">
+        <img src = "img/Character_01.png" class="avartar-back" />
+        
+        <div class = "healthindex-div" style="background-color: #EA6288;" ng-click="gotoHealthIndex()">
+            <p class="healthindex-text">My Health Index</p>
+            <p class="healthindex-score">32</p>
+        </div> 
+        
+        <div class = "circles-div" style="background-color: #a9a5d2;" ng-click="gotoCircles()">
+            <p class="healthindex-text">Circles</p>
+            <div class="bottom-img-back">
+                <img src="img/Rectangle_4.png" style="height: 3.2vh">
+                <p class="bottom-text">1 invite</p>
+            </div>
+            <p class="healthindex-corner">1 invite</p>
+        </div> 
+        
+        <div class = "challenges-div" style="background-color: #ffbb45;" ng-click="gotoChallenges()">
+            <p class="healthindex-text">Challenges</p>
+            <div class="bottom-img-back">
+                <img src="img/Rectangle_4.png" style="height: 3.2vh">
+                <p class="bottom-text">3 active</p>
+            </div>
+        </div> 
+        
+        <div class = "healthcoins-div" style="background-color: #71c99a" ng-click="gotoHealthCoins()">
+            <p class="healthindex-text">Health Coins</p>
+            <div style="margin-left: 3.8vh">
+                <span class="coins-text">30</span>
+                <img class="coins-img-valign" src="img/Gold_coin.png"/>
+            </div>
+        </div> 
+
+        <div class = "mymedicalrecords-div" style="background-color: #41c4cd;" ng-click="gotoMyMedicalRecords()">
+            <p class="healthindex-text">My Medical Records</p>
+
+        </div> 
+        
+    </ion-content>
+    
+</ion-view>
+

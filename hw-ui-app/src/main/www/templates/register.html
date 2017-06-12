@@ -1,0 +1,194 @@
+<ion-view style="" class=" " title="{{ label.register.title }}">
+    <div class="bar bar-subheader secondSubHeaderColor langImagePadding">
+        <div>
+            <span style="float:left;width:30%;margin-top:-2px" ng-click="openLangModal()">
+                    <img  class="languageFlags" src="img/english-select.png">    <img  class="languageFlags" src="img/spanish-select.png">
+                </span>
+            <span style="float:right" ng-click="openFontModal()">{{ label.common.fontSizeText }}
+                    <span class="font-size-8" style="padding-left:4px;" ng-class="{selectedFont:smallFont}">{{ label.common.optionsFontText }}</span>
+            <span class="font-size-10" style="padding-left:4px;" ng-class="{selectedFont:normalFont}">{{ label.common.optionsFontText }}</span>
+            <span class="font-size-12" style="padding-left:4px;" ng-class="{selectedFont:largeFont}">{{ label.common.optionsFontText }}</span>
+            </span>
+            <div class="clearFix"></div>
+        </div>
+    </div>
+    <ion-content style="margin-top:15%" class="has-header" padding="true" id="register" overflow-scroll="true">
+        <form class="list" ng-invalid="emailValidation" ng-model="myForm" name="myForm" ng-submit="submit()" ng-controller="registerCtrl">
+            <label style="border-bottom:1px solid #bfbfbf" focus-Me class="item-input">
+                <input type="email" name="email" placeholder="{{ label.common.email }}" ng-model="email" required ng-blur="emailValidation=false" ng-focus="resetValidation()"><span style="color:red">*</span>
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="emailValidation">
+                <span class="error font-size-10" ng-show="myForm.email.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                <span class="error font-size-10" ng-show="myForm.email.$error.email" style="color:red">
+        {{ message.common.invalidEmail }}</span>
+                <span class="error font-size-10" ng-show="emailverifyvar" style="color:red">
+       "Email already exist!!"</span>
+            </div>
+            <div class="spacer seperatorDiv"></div>
+
+            <label style="border-bottom:1px solid #bfbfbf" class="item-input">
+                <input type="password" placeholder="{{ label.common.password }}" id="password" name="password" ng-model="password" ng-hide="showPassword" required ng-focus="passwordValidation=true" ng-blur="checkPasswordLength(password)">
+                <input type="text" id="passwordRaw" placeholder="{{ label.common.password }}" ng-model="password" ng-show="showPassword" ng-focus="passwordValidation=true" ng-blur="checkPasswordLength(password)"><span style="color:red">*</span>
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="passwordValidation">
+                <span class="error font-size-10" ng-show="myForm.password.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                <span class="error font-size-10" ng-show="validPassword" style="color:red">
+        {{ message.common.invalidPassword }}</span>
+            </div>
+            <div class="item item-checkbox" style="border:none;margin-top:2px">
+                <label class="checkbox">
+                    <input ng-click="showPassword = !showPassword" type="checkbox">
+                </label>
+                <span class="font-size-16">{{ label.register.showPasswordText }}</span>
+            </div>
+            <div class="spacer seperatorDiv"></div>
+            <div style="">
+                <div>
+                    <div class="floatLeftAndWidth48">
+                        <label style="border-bottom:1px solid #bfbfbf" class="item-input">
+                            <input type="text" placeholder="{{ label.common.firstNameText }}" name="firstName" ng-model="firstName" required ng-focus="firstNameValidation=true" ng-blur="firstNameValidation=false"><span style="color:red">*</span>
+                        </label>
+                        <div role="alert" style="padding:5px" ng-hide="firstNameValidation">
+                            <span class="error font-size-10" ng-show="myForm.firstName.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                        </div>
+                    </div>
+                    <div class="floatRightAndWidth48">
+                        <label style="border-bottom:1px solid #bfbfbf" class="item-input">
+                            <input type="text" placeholder="{{ label.common.lastNameText }}" name="lastName" ng-model="lastName">
+                        </label>
+                    </div>
+                </div>
+                <div class="clearFix"></div>
+            </div>
+            <div class="spacer seperatorDiv"></div>
+
+            <label style="border:none;border-bottom:1px solid #bfbfbf" class="item item-input">
+                <span class="input-label" style="width:45%">{{ label.common.dateOfBirthText }}<span style="color:red">*</span></span>
+                <input type="date" class="dateInput" placeholder="" value="{{ maxDate }}" name="dob" ng-model="dob" required ng-focus="dobValidation=true" ng-blur="dobValidation=false">
+                <i class="icon icon ion-calendar dateIcon"></i>
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="dobValidation">
+                <span class="error font-size-10" ng-show="myForm.dob.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+            </div>
+            <div class="spacer seperatorDiv"></div>
+            <label style="border:none;border-bottom:1px solid #bfbfbf" class="item item-select ">
+                <span class="input-label">{{ label.common.sexText }}<span style="color:red">*</span></span>
+                <select ng-model="gender">
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
+                </select>
+            </label>
+            <div class="spacer seperatorDiv"></div>
+            <div style="">
+                <div>
+                    <div class="floatLeftAndWidth48">
+                        <label style="border-bottom:1px solid #bfbfbf" class="item-input">
+
+                            <input type="text" placeholder="{{ label.common.zipcodeText }}" name="zipcode" ng-model="zipcode" required ng-focus="zipCodeValidation=true" ng-blur="zipCodeValidation=false" ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/"><span style="color:red">*</span>
+                        </label>
+                        <div role="alert" style="padding:5px" ng-hide="zipCodeValidation">
+                            <span class="error font-size-10" ng-show="myForm.zipcode.$error.required" style="color:red">
+        {{ message.common.required }}</span>//Not a valid number!
+                            <span class="error font-size-10" ng-show="!myForm.zipcode.$valid" style="color:red">
+        {{ message.common.invalidZipcode }}</span>//This field is required.
+
+                        </div>
+                    </div>
+                    <div class="floatRightAndWidth48">
+                        <label style="border-bottom:1px solid #bfbfbf" class="item-input">
+                            <registerphone-directive placeholder="label.common.mobileNumberText" model='myModel.phonenumber'></registerphone-directive>
+                            <span style="color:red">*</span>
+                        </label>
+                        <div role="alert" style="padding:5px">
+                            <span class="error font-size-10" ng-show="myForm.mobile.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clearFix"></div>
+            </div>
+            <div class="spacer seperatorDiv"></div>
+            <div class="item item-checkbox borderBottom" style="border:none;">
+                <label class="checkbox">
+                    <input ng-model="promoCode" type="checkbox">
+                </label>
+                <span class="font-size-16">{{ label.register.promoCodeText }}</span>
+            </div>
+
+            <label ng-show="promoCode" class="inputLabel item-input">
+                <input type="text" ng-model="promo" placeholder="{{ label.register.promoCodeInputText }}" ng-focus="promoValidation=true">
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="promoValidation">
+                <span class="error font-size-10" ng-show="!promoverifyvar" style="color:red">
+       "Promo Code is not valid!!"</span>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+            <div class="item item-checkbox borderBottom" style="border:none;">
+                <label class="checkbox">
+                    <input ng-model="privacy" ng-checked="privacy.checked" name="privacy" required type="checkbox">
+                </label>
+                <span class="font-size-16">{{ label.register.appPrivacyText }}</span><a href="#" ng-click="openLinkWellness('resources/docs/privacy_policy.pdf')" class="font-size-16">{{ label.register.appPrivacyLinkText }} </a><span style="color:red">*</span>
+            </div>
+
+            <div role="alert" style="padding:5px" ng-hide="myForm.privacy.$pristine">
+                <span class="error font-size-10" ng-show="myForm.privacy.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+
+            </div>
+            <div class="seperatorDiv spacer"></div>
+
+            <div class="item item-checkbox borderBottom" style="border:none;">
+                <label class="checkbox">
+                    <input ng-model="hippa" ng-checked="hippa.checked" name="hippa" required type="checkbox">
+                </label>
+                <span class="font-size-16">{{ label.register.hipaaAuthorisationText }}</span><a href="#" ng-click="openLinkWellness('resources/docs/hipaa_b_a.pdf')" class="font-size-16">{{ label.register.hipaaAuthorisationLinkText }} </a><span style="color:red">*</span>
+            </div>
+
+            <div role="alert" style="padding:5px" ng-hide="myForm.hippa.$pristine">
+                <span class="error font-size-10" ng-show="myForm.hippa.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+
+            <div class="item item-checkbox borderBottom" style="border:none;">
+                <label class="checkbox">
+                    <input name="notification" ng-model="notification" type="checkbox">
+                </label>
+                <span class="font-size-16">{{ label.register.notificationText }}</span>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+
+            <button type="submit" class=" button button-assertive  button-block buttonColor font-size-12" ng-disabled="myForm.$invalid" ng-click="register()">{{ label.register.registerButtonText }}</button>
+        </form>
+    </ion-content>
+</ion-view>
+
+<script id="langModal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="headerColor">
+            <h1 class="title" style="color:#fff">{{ label.common.languageSelectionTitle }}</h1>
+        </ion-header-bar>
+        <ion-content class="languageModalContent">
+            <ion-radio name="languageGroup" ng-model="language" ng-click="closeLangModal('english')" ng-value="'english'"> <span class="font-size-14">{{ label.common.english }}</span></ion-radio>
+            <ion-radio name="languageGroup" ng-model="language" ng-click="closeLangModal('spanish')" ng-value="'spanish'"> <span class="font-size-14">{{ label.common.spanish }}</span></ion-radio>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="fontModal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="headerColor">
+            <h1 class="title" style="color:#fff">{{ label.common.fontSizeText }}</h1>
+        </ion-header-bar>
+        <ion-content style="margin-top:10%">
+            <ion-radio name="fontGroup" ng-model="fontSize" ng-click="addCSS('smaller')" ng-value="'smaller'"><span class="font-size-8">{{ label.common.optionsFontText }}</span></ion-radio>
+            <ion-radio name="fontGroup" ng-model="fontSize" ng-click="addCSS('normal')" ng-value="'normal'"> <span class="font-size-10">{{ label.common.optionsFontText }}</span></ion-radio>
+            <ion-radio name="fontGroup" ng-model="fontSize" ng-click="addCSS('large')" ng-value="'large'"><span class="font-size-12">{{ label.common.optionsFontText }}</span></ion-radio>
+        </ion-content>
+    </ion-modal-view>
+</script>

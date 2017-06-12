@@ -1,0 +1,98 @@
+<ion-view style="" class=" " title="{{ label.sideMenu.helpText }}">
+    <ion-content id="FAQContent" class="has-header has-footer" padding="false" ng-controller="FAQCtrl">
+        <div style="padding:10px">
+            <h3>FAQ</h3>
+            <div>
+                <div style="padding:5px;background:#ddd" ng-click="showData('1')">
+                    <h4>Q1. <a>{{ faqData.questionFirst }}</a></h4>
+                </div>
+                <div ng-show="first" style="padding:5px;background:#fff;border:1px solid #ddd;border-radius:4px;">{{ faqData.answerFirst }}</div>
+            </div>
+            <div style="margin-top: 10px;">
+                <div style="padding:5px;background:#ddd" ng-click="showData('2')">
+                    <h4>Q2. <a>{{ faqData.questionSecond }}</a></h4>
+                </div>
+                <div ng-show="second" style="padding:5px;background:#fff;border:1px solid #ddd;border-radius:4px;">{{ faqData.answerSecond }}</div>
+            </div>
+            <div style="margin-top: 10px;">
+
+                <div style="padding:5px;background:#ddd" ng-click="showData('3')">
+                    <h4>Q3. <a>{{ faqData.questionThird }}</a></h4>
+                </div>
+                <div ng-show="third" style="padding:5px;background:#fff;border:1px solid #ddd;border-radius:4px;">{{ faqData.answerThird }}</div>
+
+            </div>
+            <div style="margin-top: 10px;">
+                <div style="padding:5px;background:#ddd" ng-click="showData('4')">
+                    <h4>Q4. <a>{{ faqData.questionFourth }}</a></h4>
+                </div>
+                <div ng-show="fourth" style="padding:5px;background:#fff;border:1px solid #ddd;border-radius:4px;">{{ faqData.answerFourth }}</div>
+            </div>
+
+        </div>
+        <div style="padding:10px">
+            <h3>{{ faqData.formFirstHeading }}</h3>
+            <h4>{{ faqData.formSecondHeading }}</h4>
+        </div>
+        <form class="list" ng-model="myForm" name="myForm" ng-submit="submit()" style="padding:10px" ng-controller="FAQCtrl">
+
+            <label style="border:1px solid #bfbfbf" class="item-input">
+                <input type="text" placeholder="{{ label.common.fullnameText }}" name="fullName" ng-model="FAQ.fullName" required ng-focus="fullNameValidation=true" ng-blur="fullNameValidation=false"><span style="color:red">*</span>
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="fullNameValidation">
+                <span class="error font-size-10" ng-show="myForm.fullName.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+            </div>
+            <div class="spacer seperatorDiv"></div>
+
+            <label style="border:1px solid #bfbfbf" class="item-input">
+                <input type="email" name="email" placeholder="{{ label.common.email }}" ng-model="FAQ.email" required ng-blur="emailValidation=false" ng-focus="resetValidation()"><span style="color:red">*</span>
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="emailValidation">
+                <span class="error font-size-10" ng-show="myForm.email.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                <span class="error font-size-10" ng-show="myForm.email.$error.email" style="color:red">
+        {{ message.common.invalidEmail }}</span>
+            </div>
+            <div class="spacer seperatorDiv"></div>
+
+            <label style="border:1px solid #bfbfbf" class="item-input">
+                <input type="text" placeholder="{{ label.common.subjectText }}" name="subject" ng-model="FAQ.subject" required ng-focus="subjectValidation=true" ng-blur="subjectValidation=false"><span style="color:red">*</span>
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="subjectValidation">
+                <span class="error font-size-10" ng-show="myForm.subject.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+            </div>
+            <div class="spacer seperatorDiv"></div>
+            <label style="border:1px solid #bfbfbf" class="item-input">
+                <textarea placeholder="{{ label.common.messageText }}" name="messageFAQ" ng-model="FAQ.messageFAQ" required ng-focus="messageValidation=true" ng-blur="messageValidation=false" style="min-height: 70px;"></textarea><span style="color:red">*</span>
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="messageValidation">
+                <span class="error font-size-10" ng-show="myForm.messageFAQ.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+            <div class="" style="text-align:center">
+
+                <button type="submit" ng-disabled="myForm.$invalid" ng-click="submitFAQ(FAQ)" class=" button button-assertive  button-block buttonColor font-size-12">Submit</button>
+
+            </div>
+
+        </form>
+
+
+    </ion-content>
+    <ion-footer-bar align-title="center" class="bar-positive" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

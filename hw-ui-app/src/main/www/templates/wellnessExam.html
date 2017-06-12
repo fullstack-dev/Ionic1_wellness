@@ -1,0 +1,66 @@
+<ion-view style="" class=" " title="{{ label.dashboard.wellnessExamModalTitel }}">
+    <app-header></app-header>
+    <ion-content id="" class="has-header has-footer contentMargin" padding="false">
+        <form name="myForm" class="list" style="padding:20px 10px 0px 10px" ng-submit="submit()">
+            <div class="seperatorDiv spacer"></div>
+            <label style="border:none;" class="item item-input borderBottom">
+                <span class="input-label" style="width:55%">{{ label.dashboard.examModalDate }}</span>
+                <input type="date" style="text-align: right;padding-right:0px" placeholder="mm-dd-yyyy" name="examDate" ng-model="wellness.examDate" required ng-blur="dateValidation=false" ng-focus="dateValidation=true">
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="dateValidation">
+                <span class="error" ng-show="myForm.examDate.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+            <label class="item-input inputLabel">
+                <input name="physicianName" ng-model="wellness.physicianName" type="text" placeholder="Physician Name" required ng-blur="nameValidation=false" ng-focus="nameValidation=true">
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="nameValidation">
+                <span class="error" ng-show="myForm.physicianName.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+
+            <label class="item-input inputLabel">
+                <input ng-model="wellness.physicianEmail" type="email" name="email" placeholder="Physician Email" required ng-blur="emailValidation=false" ng-focus="emailValidation=true">
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="emailValidation">
+                <span class="error" ng-show="myForm.email.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                <span class="error" ng-show="myForm.email.$error.email" style="color:red">
+        {{ message.common.invalidEmail }}</span>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+            <ion-checkbox class="font-size-16" name="physicianConsent" ng-model="wellness.physicianConsent" style="border:none;" required ng-blur="consentValidation=false" ng-focus="consentValidation=true">{{ label.dashboard.examModalCheckText }} </ion-checkbox>
+            <div role="alert" style="padding:5px" ng-hide="consentValidation">
+                <span class="error" ng-show="myForm.physicianConsent.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+            </div>
+            <div class="seperatorDiv spacer"></div>
+            <div class="" style="text-align:center">
+
+                <button type="submit" ng-disabled="myForm.$invalid" ng-click="submitExamDetails(wellness)" class=" button button-assertive  button-block buttonColor font-size-12">Submit</button>
+
+            </div>
+        </form>
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

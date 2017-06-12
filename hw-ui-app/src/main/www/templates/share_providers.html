@@ -1,0 +1,108 @@
+<ion-view style="background-color: white;" class=" " title="Provider">
+    <ion-content scroll="true">
+        <p class="headTitle">Select a healthcare provider you have already connected to</p>
+        
+        <ion-list>
+            <div style="margin-left: 3vh;width: 90%;" class="list">
+                <ion-item style="border-bottom: 1px solid #f5decf; text-align:center" ng-click="selected_provider_name()">
+                    <p style="font-size: 15px; color: #3cb0b8;">{{connected_provider_name}}</p>
+                    <div class="item-icon-right" ng-if="connected_provider_name">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </div>
+                </ion-item>
+                
+                <ion-item style="border-bottom: 1px solid #f5decf; text-align:center"> 
+                    <p style="font-size: 15px; color: #3cb0b8;">{{connected_hospital_name}}</p>
+                    <div class="item-icon-right" ng-if="connected_hospital_name">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-list>
+
+        <p class="headTitle">Or choose a new healthcare provider you want to connect to</p>
+
+        <p class="middleTitle">State or Zip Code</p>
+
+        <label class="item item-input item-select" >
+            <select id="selected_state" style="color: #3cb0b8;">
+                <option selected="selected">Alabama</option>
+                <option>Alaska</option>
+                <option>Arizona</option>
+                <option>Arkansas</option>
+                <option>California</option>
+                <option>Colorado</option>
+                <option>Connecticut</option>
+                <option>Delaware</option>
+                <option>Florida</option>
+                <option>Georgia</option>
+                <option>Hawaii</option>
+                <option>Idaho</option>
+                <option>Illinois</option>
+                <option>Indiana</option>
+                <option>Iowa</option>
+                <option>Kansas</option>
+                <option>Kentucky</option>
+                <option>Louisiana</option>
+                <option>Maine</option>
+                <option>Maryland</option>
+                <option>Massachusetts</option>
+                <option>Michigan</option>
+                <option>Minnesota</option>
+                <option>Mississippi</option>
+                <option>Missouri</option>
+                <option>Montana</option>
+                <option>Nebraska</option>
+                <option>Nevada</option>
+                <option>New Hampshire</option>
+                <option>New Jersey</option>
+                <option>New Mexico</option>
+                <option>New York</option>
+                <option>North Carolina</option>
+                <option>North Dakota</option>
+                <option>Ohio</option>
+                <option>Oklahoma</option>
+                <option>Oregon</option>
+                <option>Pennsylvania</option>
+                <option>Rhode Island</option>
+                <option>South Carolina</option>
+                <option>South Dakota</option>
+                <option>Tennessee</option>
+                <option>Texas</option>
+                <option>Utah</option>
+                <option>Vermont</option>
+                <option>Virginia</option>
+                <option>Washington</option>
+                <option>West Virginia</option>
+                <option>Wisconsin</option>
+                <option>Wyoming</option>
+            </select>
+        </label>
+
+        <p style="margin-top: 2vh;" class="middleTitle">Provider's Name</p>
+        
+        <label class="item item-input item-select">
+            <select id="selected_provider" style="color: #3cb0b8;">
+                <option selected="selected">Inova Alexandria Hospital</option>
+                <option>Inova Fairfax Hospital Fairfax County System</option>
+                <option>Inova Fairfax Hospital Fairfax County System Georgetown Medical School</option>
+                <option>Inova Fairfax Hospital Fairfax County System George Washington University Medical School</option>
+                <option>Inova Fairfax Childrens Hospital</option>
+                <option>Inova Fair Oaks Hospital Fairfax</option>
+                <option>Inova Loudoun Hospital Leesburg</option>
+                <option>Inova Mount Vernon Hospital Alexandria</option>
+                <option>Cape Fear Valley-Bladen County Hospital</option>
+                <option>Cape Fear Valley Hoke Hospital Raeford</option>
+                <option>Cape Fear Valley Medical Center Fayetteville</option>
+            </select>
+        </label>
+        <div class="spacer seperatorDiv"></div>
+
+        <BUTTON class="updateButton" ng-click="send_function()">Send</BUTTON>
+
+        <p class="underTitle">Don't see your provider listed?<a on-tap="download()" style="color: #3cb0b8;">Download from email or scan paper document.</a></p>
+
+        <div class="spacer seperatorDiv"></div>
+            
+    </ion-content>
+</ion-view>

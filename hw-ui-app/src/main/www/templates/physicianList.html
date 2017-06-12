@@ -1,0 +1,43 @@
+<ion-view style="" class=" " title="{{ label.physicanList.title }}">
+    <app-header></app-header>
+    <ion-content class="has-header has-footer contentMargin" padding="true" ng-class="{expanded:isExpanded}">
+
+        <ion-list id="docList" class="animate-fade-slide-in-right">
+            <ion-item style="border:none;padding-bottom:0px;margin-bottom:10px;padding-bottom:10px" class="item-avatar  borderBottom" ng-repeat="list in physician | orderBy : 'distance'">
+                <img class="docListImage" ng-src="{{ list.imageUrl }}">
+                <div class="font-size-16" style="float:left;white-space: pre-wrap;width: 100%;text-align:left">Dr. {{ list.name }}</div>
+                <div class="font-size-16" ng-if="list.email" style="float:left;white-space: pre-wrap;width: 100%;text-align:left;margin-top: 4%;"><i class="icon icon ion-email docItemIcon"></i>{{ list.email }}</div>
+                <div class="font-size-16" style="float:left;white-space: pre-wrap;width: 100%;text-align:left;margin-top: 4%;"><span style="display: inline-block;width: 10%;float: left;"><i class="icon icon ion-ios-telephone docItemIcon"></i></span><span style="vertical-align: text-bottom;float: left;"><div style="padding-bottom: 5px;" ng-repeat="phone in list.phones"><a style="margin-right:5px" ng-href="tel:{{ phone.number }}">{{ phone.number }}</a></div> </span></div>
+                <div class="font-size-16" style="float:left;width: 100%;text-align:left;margin-top: 0%;"><span><i class="icon icon ion-location docItemIcon"></i>{{ list.address }}</span><span style="float:right;color:blue" ng-click="physicianBio(list.info) " class="font-size-16 ">.....More</span>
+
+                </div>
+                <div style="clear:both "></div>
+                <div style="margin-top: 4%; "><span class="font-size-12 " style="float:left "></span><span style="float:right;color:#072a29 " class="font-size-12 "><b>distance:</b> {{ list.distance }} mile</span></div>
+                <div style="clear:both "></div>
+                <p class="font-size-12 " style="text-align:left ">{{ list.vicinity }}</p>
+
+            </ion-item>
+
+        </ion-list>
+
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

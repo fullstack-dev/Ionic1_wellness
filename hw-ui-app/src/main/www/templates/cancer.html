@@ -1,0 +1,92 @@
+<ion-view style="" class=" " title="{{ label.cancerView.title }}">
+    <app-header></app-header>
+    <ion-content class="has-header has-footer contentMargin" id="cancerView" padding="false">
+        <div class="row" ng-if="userGender=='Female' && userAge>44" ui-sref="menu.breast" style="padding:0px;margin-bottom:10px">
+            <div class="col " style="padding:0px;background-color:#4d3f48">
+                <div class="leftAlign triangle-topleft" ng-class="{'green':breastHealthy==true,'yellow':breastRisk==true,'red':breastHighRisk==true,'silver':breastNA==true}"></div>
+                <ion-item style="border:none;min-height: 90px;padding-right: 30px;" class="item-avatar">
+                    <img src="img/ribbon-green.png" style="border-radius:0%;left:6px">
+                    <h2 style="color:#fff" class="centerAlign">{{ label.cancerView.breastCancer }}</h2>
+                    <div style="margin-top: 5px;color:#fff"><span class="pastScreenDate"><div class="font-size-10">{{ label.cancerView.lastScreeningDate }}</div>
+                        <div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ breastMonth }}/{{ breastYear }}</div></span><span class="nextScreenDate"><div class="font-size-10">{{ label.cancerView.nextScreeningDate }}</div><div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ breastNextMonth }}/{{ breastNextYear }}</div></span></div>
+                </ion-item>
+            </div>
+        </div>
+
+        <div class="row" ng-if="userGender=='Female' && userAge>20 && userAge<66" ui-sref="menu.cervical" style="padding:0px;margin-bottom:10px">
+            <div class="col " style="padding:0px;background-color:#373145">
+                <div class="leftAlign triangle-topleft" ng-class="{'green':cervicalHealthy==true,'yellow':cervicalRisk==true,'red':cervicalHighRisk==true,'silver':cervicalNA==true}"></div>
+                <ion-item style="border:none;min-height: 90px;padding-right: 30px;" class="item-avatar">
+                    <img src="img/ribbon-green.png" style="border-radius:0%;left:6px">
+                    <h2 style="color:#fff" class="centerAlign">{{ label.cancerView.cervicalCancer }}</h2>
+                    <div style="margin-top: 5px;color:#fff"><span class="pastScreenDate"><div class="font-size-10">{{ label.cancerView.lastScreeningDate }}</div><div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ cervicalMonth }}/{{ cervicalYear }}</div></span><span class="nextScreenDate"><div class="font-size-10">{{ label.cancerView.nextScreeningDate }}</div><div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ cervicalNextMonth }}/{{ cervicalNextYear }}</div></span></div>
+                </ion-item>
+            </div>
+        </div>
+
+
+        <div class="row" ng-if="userAge>49 && userAge<76" ui-sref="menu.colon" style="padding:0px;margin-bottom:10px">
+            <div class="col " style="padding:0px;background-color:#453530">
+                <div class="leftAlign triangle-topleft" ng-class="{'green':colonHealthy==true,'yellow':colonRisk==true,'red':colonHighRisk==true,'silver':colonNA==true}"></div>
+                <ion-item style="border:none;min-height: 90px;padding-right: 30px;" class="item-avatar">
+                    <img src="img/ribbon-green.png" style="border-radius:0%;left:6px">
+                    <h2 style="color:#fff" class="centerAlign">{{ label.cancerView.colonCancer }}</h2>
+                    <div style="margin-top: 5px;color:#fff"><span class="pastScreenDate"><div class="font-size-10">{{ label.cancerView.lastScreeningDate }}</div><div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ colonMonth }}/{{ colonYear }}</div></span><span class="nextScreenDate"><div class="font-size-10">{{ label.cancerView.nextScreeningDate }}</div><div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ colonNextMonth }}/{{ colonNextYear }}</div></span></div>
+                </ion-item>
+            </div>
+        </div>
+
+
+        <div class="row" ng-if="userGender=='Male' && userAge>39 && userAge<66" ui-sref="menu.prostate" style="padding:0px;margin-bottom:10px">
+            <div class="col " style="padding:0px;background-color:#344242">
+                <div class="leftAlign triangle-topleft" ng-class="{'green':prostateHealthy==true,'yellow':prostateRisk==true,'red':prostateHighRisk==true,'silver':prostateNA==true}"></div>
+                <ion-item style="border:none;min-height: 90px;padding-right: 30px;" class="item-avatar">
+                    <img src="img/ribbon-green.png" style="border-radius:0%;left:6px">
+                    <h2 style="color:#fff" class="centerAlign">{{ label.cancerView.prostateCancer }}</h2>
+                    <div style="margin-top: 5px;color:#fff"><span class="pastScreenDate"><div class="font-size-10">{{ label.cancerView.lastScreeningDate }}</div><div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ prostateMonth }}/{{ prostateYear }}</div></span><span class="nextScreenDate"><div class="font-size-10">{{ label.cancerView.nextScreeningDate }}</div><div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ prostateNextMonth }}/{{ prostateNextYear }}</div></span></div>
+                </ion-item>
+            </div>
+        </div>
+
+
+        <div class="row" ng-if="userAge>54 && userAge<81 && lungCheck==true" ui-sref="menu.lung" style="padding:0px;">
+            <div class="col " style="padding:0px;background-color:#3a3442">
+                <div class="leftAlign triangle-topleft" ng-class="{'green':lungHealthy==true,'yellow':lungRisk==true,'red':lungHighRisk==true,'silver':lungNA==true}"></div>
+                <ion-item style="border:none;min-height: 90px;padding-right: 30px;" class="item-avatar">
+                    <img src="img/ribbon-green.png" style="border-radius:0%;left:6px">
+                    <h2 style="color:#fff" class="centerAlign">{{ label.cancerView.lungCancer }}</h2>
+                    <div style="margin-top: 5px;color:#fff"><span class="pastScreenDate"><div class="font-size-10">{{ label.cancerView.lastScreeningDate }}</div><div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ lungMonth }}/{{ lungYear }}</div></span><span class="nextScreenDate"><div class="font-size-10">{{ label.cancerView.nextScreeningDate }}</div><div class="font-size-10 centerAlign" style="margin-top: -5px;">{{ lungNextMonth }}/{{ lungNextYear }}</div></span></div>
+                </ion-item>
+            </div>
+        </div>
+
+        <div class="row" ng-if="(userGender=='Female' && userAge<=20) || (userGender=='Male' && userAge<=39)" style="padding:0px;margin-bottom:10px">
+            <div class="col " style="padding:0px;">
+                <div class="box-body" id="streaming_data" style="height: 100%; position: relative;">
+                    <div class="text-center" style="margin-top: 30%;line-height: 30px;font-size: 25px;color: #072a29!important;">No Cancer Screening available for you.</div>
+                    <div class="text-muted text-center" style="font-size:20px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

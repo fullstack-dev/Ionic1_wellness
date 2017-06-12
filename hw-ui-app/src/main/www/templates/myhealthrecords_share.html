@@ -1,0 +1,41 @@
+<ion-view style="background-color: white" class=" " title="Share Medical Records" >
+    <ion-content scroll="true" padding-horizontal>
+        <p class="headTitle">Choose who you want to get your medical records from?</p>
+        <ion-list class="">
+            <div style="margin-left: 3vh;width: 90%;" class="list">
+
+                <ion-item style="border-bottom: 1px solid #f5decf; text-align:center" ng-click="share_hospital_clinic()">
+                    <p style="font-size: 15px; color: #3cb0b8;"><img src="img/buildings.png" style="vertical-align: middle; margin-right: 1vh;"/>
+                       Hospitals or Clinics</p>
+                    <div class="item-icon-right">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </div>
+                </ion-item>
+                
+                <ion-item style="border-bottom: 1px solid #f5decf; text-align:center" ng-click="share_providers()">
+                    <p style="font-size: 15px; color: #3cb0b8;"><img src="img/people.png" style="vertical-align: middle; margin-right: 1vh;"/>
+                       Providers</p>
+                    <div class="item-icon-right">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </div>
+                </ion-item>
+
+                <ion-item style="border-bottom: 1px solid #f5decf;text-align:center" ng-click="share_providers()">
+                    <p style="font-size: 15px; color: #3cb0b8;"><img src="img/weather.png" style="vertical-align: middle; margin-right: 1vh;" />
+                       Health Insurance</p>
+                    <div class="item-icon-right">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </div>
+                </ion-item>
+
+                <ion-item style="border-bottom: 1px solid #f5decf;text-align:center" ng-click="share_providers()">
+                    <p style="font-size: 15px; color: #3cb0b8;"><img src="img/cross.png" style="vertical-align: middle; margin-right: 1vh;"/>
+                       Other</p>
+                    <div class="item-icon-right">
+                        <i class="icon ion-ios-arrow-right"></i>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-view>

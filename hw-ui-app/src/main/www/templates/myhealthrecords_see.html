@@ -1,0 +1,33 @@
+<ion-view style="background-color: white" class=" " title="See Medical Records" >
+    <ion-content scroll="true" padding-horizontal>
+        <div>
+            <ul class="before-div" ng-repeat="downloadedDocument in downloadedDocuments">
+                <li ng-click="expand_year(downloadedDocument)">
+                    <div class="year-display">
+                        {{downloadedDocument.year}}
+                        <img src="img/tri_down.png"/> 
+                    </div>
+                </li>
+                <li ng-show="downloadedDocument.show">
+                    <ul ng-repeat="folder in downloadedDocument.folder">
+                        <li ng-click="expand_content(folder)">
+                            
+                            <div class="day-title-display">
+                                {{folder.day_title}}
+                                <img src="img/tri_down.png" class="down-image-position">
+                            </div>
+                        </li>
+                        <li ng-show="folder.show">
+                            <ul ng-repeat="sub_folder in folder.sub_folder">
+                                <li class="content-display" ng-click="listitem_click(sub_folder)">
+                                    <div class="content-display">{{sub_folder.content}}</div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                </li>
+            </ul>
+        </div>
+    </ion-content>
+</ion-view>

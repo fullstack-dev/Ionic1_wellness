@@ -1,0 +1,73 @@
+<ion-view style="" class=" " title="{{ label.deviceView.title }}">
+    <app-header></app-header>
+    <ion-content class="has-header has-footer contentMargin" padding="false" id="deviceDashboard">
+        <div class="row deviceDashboardContentMargin" style="">
+            <div class="col " style="padding:0px;">
+                <div class="row" style="padding-top:0px;">
+                    <div class="col fitbitSection" style="">
+                        <span class="font-size-20 leftAlign">{{ label.deviceView.fitbitText }} </span>
+                        <span style="float:right;margin-top: -15px;"><ion-toggle ng-change="deviceConnect('fitbit',fitbitMode.checked)" ng-model="fitbitMode.checked" toggle-class="toggle-balanced" style="border:none"></ion-toggle> </span>
+                    </div>
+                </div>
+                <ion-item style="border:none;min-height: 90px;padding-right: 30px;margin-bottom: 2%;" class="item-avatar">
+                    <img src="img/deviceOne.png" class="deviceImg">
+                    <div class="deviceTextSection">
+                        <span class="font-size-16" style="margin-top:0px;width: 50%;display: inline-block;">{{ label.deviceView.activityText }}</span>
+                        <span class=" button button-assertive  button-block viewDataButton font-size-11" ng-click="goToFitBit()">{{ label.common.viewText }}</span>
+
+
+                    </div>
+                </ion-item>
+            </div>
+        </div>
+
+
+        <div class="row" style="padding:10px 5px 0px 5px;margin-bottom:10px">
+            <div class="col " style="padding:0px;">
+                <div class="row" style="padding-top:0px;">
+                    <div class="col fitbitSection">
+                        <span class="font-size-20 leftAlign">{{ label.deviceView.withingText }} </span>
+                        <span style="float:right;margin-top: -15px;"><ion-toggle ng-change="deviceConnect('withings',withingMode.checked)" ng-model="withingMode.checked" toggle-class="toggle-balanced" style="border:none"></ion-toggle> </span>
+                    </div>
+                </div>
+                <ion-item style="border:none;min-height: 90px;padding-right: 30px;margin-bottom: 2%;" class="item-avatar">
+                    <img src="img/deviceTwo.png" class="deviceImg">
+                    <div class="deviceTextSection">
+                        <span class="font-size-16" style="margin-top:0px;width: 50%;display: inline-block;">{{ label.deviceView.bodyScaleText }}</span>
+                        <span class=" button button-assertive  button-block viewDataButton font-size-11" ng-click="goToBMI()">{{ label.common.viewText }}</span>
+
+                    </div>
+                </ion-item>
+
+                <ion-item style="border:none;min-height: 90px;padding-right: 30px;margin-bottom: 2%;" class="item-avatar">
+                    <img src="img/deviceThree.png" class="deviceImg">
+                    <div class="deviceTextSection">
+                        <span class="font-size-16" style="margin-top:0px;width: 50%;display: inline-block;">{{ label.deviceView.BPMonitorText }}</span>
+                        <span class=" button button-assertive  button-block viewDataButton font-size-11" ng-click="goToHyperTension()">{{ label.common.viewText }}</span>
+
+                    </div>
+                </ion-item>
+            </div>
+        </div>
+
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

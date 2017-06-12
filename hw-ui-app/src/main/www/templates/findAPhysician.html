@@ -1,0 +1,66 @@
+<ion-view style="" class=" " title="{{ label.findAphysician.title }}">
+    <app-header></app-header>
+    <ion-content class="has-header has-footer contentMargin" padding="true" ng-controller="findAPhysicianCtrl">
+
+        <form class="list" name="findForm" ng-submit="submit()">
+
+
+            <label class="item formLabel item-select">
+                <span class="input-label findDocSelect">{{ label.findAphysician.specialityOptionText }}</span>
+                <select class="" ng-model="docType">
+                    <option ng-selected="option.code == docType" ng-repeat="option in docSpeciality" value="{{option.code}}">{{option.name}}</option>
+                </select>
+            </label>
+
+            <label class="item-input borderBottom" style="padding-left:5px">
+                <span class="input-label">{{ label.common.zipcodeText }}</span>
+                <input type="text" placeholder="{{ label.common.zipcodeText }}" style="text-align:right" ng-model="zipcode" ng-pattern="/^(\d{5}(-\d{4})?|[A-Z]\d[A-Z] *\d[A-Z]\d)$/" ng-focus="zipCodeValidation=true" ng-blur="zipCodeValidation=false" name="zipcode" required>
+            </label>
+            <div role="alert" style="padding:5px" ng-hide="zipCodeValidation">
+                <span class="error" ng-show="findForm.zipcode.$error.required" style="color:red">
+        {{ message.common.required }}</span>
+                <span class="error" ng-show="!findForm.zipcode.$valid" style="color:red">
+        {{ message.common.invalidZipcode }}</span>
+
+            </div>
+            <div class="seperatorDiv spacer"></div>
+
+            <label class="item formLabel item-select">
+                <span class="input-label" style="text-align:left">{{ label.findAphysician.distanceText }}</span>
+                <select class="" ng-model="miles">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                </select>
+            </label>
+            <div class="seperatorDiv spacer"></div>
+            <button ng-click="physicianList()" type="submit" class=" button button-dark  button-block button-clear buttonColor font-size-12" ng-disabled="findForm.$invalid">{{ label.findAphysician.submitButtonText }}</button>
+
+        </form>
+
+
+
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

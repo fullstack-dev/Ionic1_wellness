@@ -1,0 +1,59 @@
+<ion-view style="" class=" " title="{{ label.cancerView.lungCancer }}">
+    <app-header></app-header>
+    <div class="bar bar-subheader  coralBackground cacerGuidlines">
+        <div class="shadow" style="padding:5px">
+
+
+            <div id="stage" class="centerAlign subHeaderDiv">
+                <div style="color:#fff;text-align: justify;" class="font-size-10 cancerGuidelinesLine">{{ label.common.cancerScreeningGuideText }}</div>
+
+            </div>
+            <div class="clearFix"></div>
+        </div>
+    </div>
+    <ion-content class="has-header has-footer cancerContent" padding="false" ng-controller="lungCtrl">
+        <a class=" button button-positive  button-block font-size-13 cancerButton button-clear" style="margin-bottom:0" ng-click="openLinkLung()">{{ label.common.USPSTFText }}</a>
+
+        <div style="padding:0px 10px 5px 10px;">
+
+            <!--<ion-checkbox ng-model="smokingHistory" class="font-size-14" style="border:none;">{{ label.lungView.question }}</ion-checkbox> -->
+            <form name="myform">
+                <label style="border:none;border-bottom:1px solid #bfbfbf" class="item item-select ">
+                    <span class="input-label" style="max-width:300px;width:70%;">{{ label.lungView.question }}</span>
+                    <select ng-model="smokingHistory">
+                        <option value="YES">YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                </label>
+
+                <div class="" style="width:100%;">{{ label.lungView.lastCancerTestDate }}</div>
+                <label style="border:none;padding:16px 0px 16px 0px;" class="item item-input">
+
+                    <input type="month" style="left:0;background:silver;padding-left:10px" placeholder="--/--/----" ng-model="lungTestDate" name="lungTestDate">
+                </label>
+            </form>
+            <a class=" button button-assertive  button-block buttonColor" ng-disabled="myform.$invalid" ng-click="updateLungCancerInfo()">{{ label.common.saveText }}</a>
+
+
+        </div>
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

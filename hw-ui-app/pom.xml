@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <parent>
+    <groupId>com.healthwizz</groupId>
+    <artifactId>hw-parent</artifactId>
+    <version>1.0.0</version>
+  </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hw-ui-app</artifactId>
+    <packaging>war</packaging>
+
+    <build>
+        <finalName>hw-ui-app</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <executions>
+                    <execution>
+                        <id>copy-dist</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}</directory>
+                                    <includes>
+                                        <include>dist.xml</include>
+                                    </includes>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>src/main/env/context.xml</file>
+                                    <classifier>context</classifier>
+                                    <type>xml</type>
+                                </artifact>
+                                <artifact>
+                                    <file>ReleaseNotes.txt</file>
+                                    <classifier>ReleaseNotes</classifier>
+                                    <type>txt</type>
+                                </artifact>
+                                <artifact>
+                                    <file>${project.build.directory}/dist.xml</file>
+                                    <classifier>dist</classifier>
+                                    <type>xml</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin> -->
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.healthwizz</groupId>
+            <artifactId>hw-ws-jar</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.javascript</groupId>
+            <artifactId>closure-compiler</artifactId>
+            <version>r2388</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

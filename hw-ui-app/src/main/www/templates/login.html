@@ -1,0 +1,27 @@
+<ion-view style="" class=" " title="{{ label.login.title }}" hide-back-button="true" id="login">
+    <ion-content class="has-header" style="margin-top: 5%;" scroll="true" padding="true">
+        <form class="list" name="myForm" ng-controller="loginCtrl" ng-submit="submit()">
+            <ion-list class=" ">
+                <label style="border-bottom:1px solid #bfbfbf" class=" item-input item-floating-label">
+                    <span class="input-label">{{ label.common.email }}</span>
+                    <input type="email" name="email" placeholder="{{ label.common.email }}" ng-model="credentials.emailID" required>
+                </label>
+
+                <label style="border-bottom:1px solid #bfbfbf" class=" item-input item-floating-label">
+                    <span class="input-label">{{ label.common.password }}</span>
+                    <input type="password" placeholder="{{ label.common.password }}" ng-minlength="6" id="password" name="password" ng-model="credentials.password" required>
+                </label>
+            </ion-list>
+            <div class="rightAlign">
+                <a style="padding:0px;" class="font-size-11 button button-positive  button-block button-clear skipButton" ng-click="goToForgotPassword()">{{ label.login.forgotPasswordText }}</a>
+            </div>
+            <button type="submit" class=" button button-assertive  button-block buttonColor font-size-14" ng-disabled="myForm.$invalid" ng-click="login(credentials)">{{ label.login.buttonText }}</button>
+            <div class="seperateOR">OR</div>
+            <a class=" button button-assertive  button-block buttonColor font-size-14" on-tap="goToSignup()">{{ label.common.registerText }}</a>
+            <!-- <div class="spacer seperatorDiv"></div>
+            <a class=" button button-assertive  button-block buttonColor font-size-14" on-tap="goToCerner()">{{ label.common.CernerText }}</a>
+            <div class="spacer seperatorDiv"></div>
+            <a class=" button button-assertive  button-block buttonColor font-size-14" on-tap="goToEpic()">{{ label.common.EpicText }}</a> -->
+        </form>
+    </ion-content>
+</ion-view>

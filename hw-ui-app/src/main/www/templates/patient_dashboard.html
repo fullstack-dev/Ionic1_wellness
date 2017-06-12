@@ -1,0 +1,247 @@
+<ion-view style="" class=" " id="dashboard" title="{{ label.dashboard.title }}" hide-back-button="true" cache-view="false">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear" ui-sref="menu.dashboard" style=""><img class="fitbitIconImage" src="img/healthwizzlogo.png" height="auto" style=""></button>
+    </ion-nav-buttons>
+    <app-header></app-header>
+    <div ng-show="examNotTaken" style="" class="bar bar-subheader discountHeader coralBackground movingBanner">
+        <div class="shadow" style="padding:0px">
+            <div id="stage" class="centerAlign subHeaderDiv">
+                <marquee style="" class="font-size-16 movingBannerText">{{ promotionalMessage }}</marquee>
+
+            </div>
+            <div class="clearFix"></div>
+        </div>
+    </div>
+    <ion-content ng-class="{'marginContentEmployer':examNotTaken==true,'marginContentPatient':patient==true,'marginContentEmployerExamTaken':examTaken==true,'marginContentEmployerExamCompleted':examCompleted==true}" class="has-header has-footer" padding="true" id="dashboardContent" scroll="true" ng-controller="dashboardCtrl">
+        <div class="row" style="border: none;">
+            <div class="col paddingColumn" style="border:none;">
+                <div class="MHIBARHeading">{{ label.common.mhiBARText }}</div>
+                <div id="indicatorBar">
+                    <span id="naBar" ng-show="naCount>0" ng-click="showStatusInfo('na')" class="MHIStatusBAR NAIndicator">{{ naCount }}</span>
+                    <span id="greenBar" ng-show="greenCount>0" ng-click="showStatusInfo('Healthy')" class="MHIStatusBAR healthyIndicator">{{ greenCount }}</span>
+                    <span id="yellowBar" ng-show="yellowCount>0" ng-click="showStatusInfo('Risk')" class="MHIStatusBAR riskIndicator">{{ yellowCount }}</span>
+                    <span id="redBar" ng-show="redCount>0" ng-click="showStatusInfo('High Risk')" class="MHIStatusBAR highRiskIndicator">{{ redCount }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="border-bottom: 1px solid silver;">
+            <div class="col paddingColumn" style="border-right: 1px solid silver;">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('bmi')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':bmiHealthy==true,'yellow':bmiRisk==true,'red':bmiHighRisk==true,'silver':bmiNA==true}"></div><span class="infoText">INFO</span></div>
+
+                        <img ui-sref="menu.bmi" src="img/BMI.png" height="auto" style="">
+                        <span class="font-size-13">{{ label.dashboard.bmiText }}</span>
+                    </div>
+                </div>
+                <div class="educationText" ng-click="openLinkWaistAndBMI()">{{ label.common.educationText }}</div>
+            </div>
+
+            <div class="col paddingColumn" style="">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class="item item-image" style="border:none">
+                        <div ng-click="showInfo('waist')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':waistHealthy==true,'yellow':waistRisk==true,'red':waistHighRisk==true,'silver':waistNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.waist" src="img/waist.png" width="100%" height="auto" style="">
+                        <span class="font-size-13">{{ label.dashboard.waistText }}</span>
+                    </div>
+                </div>
+                <div class="educationText" ng-click="openLinkWaistAndBMI()">{{ label.common.educationText }}</div>
+            </div>
+            <div class="col paddingColumn" style="border-left: 1px solid silver;">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('exercise')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':exerciseHealthy==true,'yellow':exerciseRisk==true,'red':exerciseHighRisk==true,'silver':exerciseNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.exercise" src="img/running.png" height="auto" style="">
+                        <span class="font-size-13">{{ label.dashboard.exerciseText }}</span>
+                    </div>
+                </div>
+                <div class="educationText" ng-click="openLinkExercise()">{{ label.common.educationText }}</div>
+            </div>
+
+
+
+        </div>
+        <div class="row" style="border-bottom: 1px solid silver;">
+
+            <div class="col paddingColumn" style="border-right: 1px solid silver;">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('diet')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':nutritionHealthy==true,'yellow':nutritionRisk==true,'red':nutritionHighRisk==true,'silver':nutritionNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.diet" src="img/nutritiondiet.png" width="100%" height="auto" style=";">
+                        <span class="font-size-13">{{ label.dashboard.dietText }}</span>
+                    </div>
+
+
+                </div>
+                <div class="educationText" ng-click="openLinkDiet()">{{ label.common.educationText }}</div>
+            </div>
+            <div class="col paddingColumn" style="">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('smoking')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':smokingHealthy==true,'yellow':smokingRisk==true,'red':smokingHighRisk==true,'silver':smokingNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.smoking" src="img/Smoking.png" width="100%" height="auto" style=";">
+                        <span class="font-size-13">{{ label.dashboard.smokingText }}</span>
+                    </div>
+
+
+                </div>
+                <div class="educationText" ng-click="openLinkSmoking()">{{ label.common.educationText }}</div>
+            </div>
+
+            <div class="col paddingColumn" style="border-left: 1px solid silver;">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('alcohol')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':alcoholHealthy==true,'yellow':alcoholRisk==true,'red':alcoholHighRisk==true,'silver':alcoholNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.alcohol" src="img/alcohal.png" width="100%" height="auto" style="">
+                        <span class="font-size-13">{{ label.dashboard.alcoholText }}</span>
+                    </div>
+
+
+                </div>
+
+                <div class="educationText" ng-click="openLinkAlcohol()">{{ label.common.educationText }}</div>
+            </div>
+
+
+        </div>
+        <div class="row" style="border-bottom: 1px solid silver;">
+
+
+            <div class="col paddingColumn" style="border-right: 1px solid silver;">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('sleep')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':sleepHealthy==true,'yellow':sleepRisk==true,'red':sleepHighRisk==true,'silver':sleepNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.sleep" src="img/sleep.png" width="100%" height="auto" style="">
+                        <span class="font-size-13">{{ label.dashboard.sleepText }}</span>
+                    </div>
+
+
+                </div>
+                <div class="educationText" ng-click="openLinkSleep()">{{ label.common.educationText }}</div>
+            </div>
+            <div class="col paddingColumn" style="">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('hyperTension')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':hypertensionHealthy==true,'yellow':hypertensionRisk==true,'red':hypertensionHighRisk==true,'silver':hypertensionNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.hyperTension" src="img/hypertension.png" height="auto" style="">
+                        <span class="font-size-13">{{ label.dashboard.hypertensionText }}</span>
+                    </div>
+
+
+                </div>
+                <div class="educationText" ng-click="openLinkHypertension()">{{ label.common.educationText }}</div>
+            </div>
+
+            <div class="col paddingColumn" style="border-left: 1px solid silver;">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('depression')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':depressionHealthy==true,'yellow':depressionRisk==true,'red':depressionHighRisk==true,'silver':depressionNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.depression" src="img/Depression.png" width="100%" height="auto" style=";">
+                        <span class="font-size-13">{{ label.dashboard.depressionText }}</span>
+                    </div>
+                </div>
+                <div class="educationText" ng-click="openLinkDepression()">{{ label.common.educationText }}</div>
+            </div>
+        </div>
+        <div class="row" style="border-bottom: 1px solid silver;">
+
+
+            <div class="col paddingColumn" style="border-right: 1px solid silver;">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('dibetes')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':diabetesHealthy==true,'yellow':diabetesRisk==true,'red':diabetesHighRisk==true,'silver':diabetesNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.diabetes" src="img/diabeties.png" width="100%" height="auto" style="">
+                        <span>{{ label.dashboard.dibetesText }}</span>
+                    </div>
+                </div>
+                <div class="educationText" ng-click="openLinkDiabetes()">{{ label.common.educationText }}</div>
+            </div>
+
+            <div class="col paddingColumn" style="">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div ng-click="showInfo('cardiovascular')">
+                            <div class="leftAlign triangle-topleft" ng-class="{'green':cardioHealthy==true,'yellow':cardioRisk==true,'red':cardioHighRisk==true,'silver':cardioNA==true}"></div><span class="infoText">INFO</span>
+                        </div>
+                        <img ui-sref="menu.cardiovascular" src="img/heart.png" width="100%" height="auto" style="">
+                        <span>{{ label.dashboard.cardioText }}</span>
+                    </div>
+
+
+                </div>
+                <div class="educationText" ng-click="openLinkCardio()">{{ label.common.educationText }}</div>
+            </div>
+            <div class="col paddingColumn" style="border-left: 1px solid silver;">
+                <div class="list card removeBorderAndBoxShadow" style="margin-top:5px">
+                    <div class=" item item-image" style="border:none">
+                        <div>
+                            <div class="leftAlign triangle-topleft" style="border-top: 20px solid #fff"></div><span class="infoText" style="color:#fff">INFO</span>
+                        </div>
+                        <img ui-sref="menu.cancer" src="img/cancer-screening.png" width="100%" height="auto" style="">
+                        <span>{{ label.dashboard.cancerText }}</span>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div class="footerSection" style="">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+
+    <ion-footer-bar align-title="center" class="bar darkGreenBackgroundFooter" ng-controller="footerCtrl">
+
+        <div class="tabs tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+
+<script id="langModal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="headerColor">
+            <button class="button button-icon ion-close" ng-click="closeLanguageModal();"></button>
+            <h1 class="title" style="color:#fff;left: 74px;">{{ label.common.languageSelectionTitle }}</h1>
+        </ion-header-bar>
+        <ion-content class="languageModalContent">
+            <ion-radio name="languageGroup" ng-model="$parent.$parent.language" ng-click="closeLangModal('english')" ng-value="'english'" class="font-size-14"> {{ label.common.english }}</ion-radio>
+            <ion-radio name="languageGroup" ng-model="$parent.$parent.language" ng-click="closeLangModal('spanish')" ng-value="'spanish'" class="font-size-14">{{ label.common.spanish }}</ion-radio>
+        </ion-content>
+    </ion-modal-view>
+</script>

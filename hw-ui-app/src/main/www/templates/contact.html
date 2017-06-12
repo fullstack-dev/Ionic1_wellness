@@ -1,0 +1,143 @@
+<article class="container ">
+    <div class="col-sm-12 noPadding">
+        <h3>FAQ</h3>
+        <div class="panel-group faq_collapse">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+								Q1. <a data-toggle="collapse" data-target="#collapse1" data-parent=".faq_collapse">{{faq1}}</a>
+							</h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <div class="panel-body">{{faq1_details}}</div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+								Q2. <a data-toggle="collapse" data-target="#collapse2" data-parent=".faq_collapse">{{faq2}}</a>
+							</h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">{{faq2_details}}</div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+								Q3. <a data-toggle="collapse" data-target="#collapse3" data-parent=".faq_collapse">{{faq3}}</a>
+							</h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">{{faq3_details}}</div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+								Q4. <a data-toggle="collapse" data-target="#collapse4" data-parent=".faq_collapse">{{faq4}}</a>
+							</h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body">{{faq4_details}}</div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+								Q5. <a data-toggle="collapse" data-target="#collapse5" data-parent=".faq_collapse">{{faq5}}</a>
+							</h4>
+                </div>
+                <div id="collapse5" class="panel-collapse collapse">
+                    <div class="panel-body">{{faq5_details}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 noPadding">
+        <div class="col-sm-8 noPadding">
+            <h3 class=" ">{{head1}}</h3>
+            <p class="head_contact">{{head1_details}}</p>
+            <form role="form" class="form-horizontal" ng-model="contactForm" name="contactForm">
+                <div class="col-xs-12 noPadding" ng-show="contactbool">
+                    <div class="alert alert-success" role="alert" ng-show="contactmesg">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> <span class="sr-only">Error:</span> {{contactMessage}}
+                    </div>
+                    <div class="alert alert-danger" role="alert" ng-show="!contactmesg">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <span class="sr-only">Error:</span> {{contactMessage}}
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="name" class="col-xs-3">{{contactlabel.name}}:<span style="color:red;"><font size="3">*</font></span></label>
+                    <div class="col-xs-9">
+                        <input type="text" class="form-control" placeholder="Full Name" ng-model="contact.name" name="username" required ng-pattern="/^[a-zA-Z ]{1,25}$/"><i class="glyphicon glyphicon-user"></i>
+                        <div role="alert" ng-show="contactForm.$submitted || contactForm.username.$touched">
+                            <span class="error text-danger" ng-message="required" ng-show="contactForm.username.$error.required">{{contactlabel.require}}</span><span class="error text-danger" ng-show="contactForm.username.$error.pattern">{{contactlabel.textOnly}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="email" class="col-xs-3">{{contactlabel.email}}:<span style="color:red;"><font size="3">*</font></span> </label>
+                    <div class="col-xs-9">
+                        <input type="email" class="form-control" placeholder="Email" ng-model="contact.email" required name="email"><i class="glyphicon glyphicon-envelope"></i>
+                        <div role="alert" ng-show="contactForm.$submitted || contactForm.email.$touched">
+                            <span class="error text-danger" ng-show="contactForm.email.$error.required">{{contactlabel.require}}</span> <span class="error text-danger" ng-show="contactForm.email.$error.email">{{contactlabel.validemail}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="sub" class="col-xs-3">{{contactlabel.subject}}:<span style="color:red;"><font size="3">*</font></span></label>
+                    <div class="col-xs-9">
+                        <input type=text class="form-control" ng-model="contact.subject" required name="subject" placeholder="Subject"><i class="glyphicon glyphicon-menu-hamburger"></i>
+                        <div role="alert" ng-show="contactForm.$submitted || contactForm.subject.$touched">
+                            <span class="error text-danger" ng-show="contactForm.subject.$error.required">{{contactlabel.require}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="message" class="col-xs-3">{{contactlabel.textarea}}:<span style="color:red;"><font size="3">*</font></span></label>
+                    <div class="col-xs-9">
+                        <textarea class="form-control" rows="6" required ng-model="contact.message" name="remarks" placeholder="Type your message here..." ng-maxlength="250"></textarea>
+                        <i class="glyphicon glyphicon-pencil"></i>
+                        <div role="alert" ng-show="contactForm.$submitted || contactForm.remarks.$touched">
+                            <span class="error text-danger" ng-show="contactForm.remarks.$error.required">{{contactlabel.require}}</span><span class="error text-danger" ng-show="contactForm.remarks.$error.maxlength">{{contactlabel.max250}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <button ng-click="submitContact(contact)" class="btn btn-success" ng-disabled="contactForm.$invalid" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-4 noPadding hidden-xs">
+            <div class="row text-center">
+                <img src="resources/images/LogoColorTextRight.jpeg" alt="Logo">
+            </div>
+            <div class="row padding30">
+                <div class="separator-logo "></div>
+                <ul class="list-unstyled contact_list">
+                    <!-- 	<li><i class="glyphicon glyphicon-home"></i>
+								<p>{{add.line1}}</p>
+							</li> -->
+                    <li><i class="glyphicon glyphicon-earphone"></i>
+                        <p>
+                            <abbr title="Phone">P:</abbr> &nbsp;{{add.phone}}
+                        </p>
+                    </li>
+                    <li><i class="glyphicon glyphicon-phone"></i>
+                        <p>
+                            <abbr title="Mobile">M:</abbr> &nbsp;{{add.mobile}}
+                        </p>
+                    </li>
+                    <li><i class="glyphicon glyphicon-envelope"></i>
+                        <p>
+                            <a href="mailto:{{add.email}}">{{add.email}}</a>
+                        </p>
+                    </li>
+                </ul>
+                <div class="separator-logo "></div>
+            </div>
+        </div>
+
+    </div>
+</article>

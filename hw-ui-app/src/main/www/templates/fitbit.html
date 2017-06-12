@@ -1,0 +1,53 @@
+<ion-view style="" class=" " title="Fitbit">
+    <app-header></app-header>
+    <ion-content id="fitbit" class="has-header has-footer contentMargin" padding="false">
+
+        <ion-item style="border:none" class="item-avatar">
+            <img src="img/fitbit_medium.png">
+            <div class="font-size-16 fitbitHeadingTextFirstLine">Fitbit Activity Tracker</div>
+            <p class="font-size-12 fitbitHeadingTextSecondLine" style="white-space: normal;">{{ updateDate }}</p>
+        </ion-item>
+        <div style="padding:16px">
+            <div id="steps">
+                <div>
+                    <span style="float:left"><span style="font-size:20px">{{ actualSteps }}</span><span style="margin-left:5px;font-size:12px">steps</span></span><span style="float:right;color:silver;font-size:14px">{{ goalSteps }}</span>
+                </div>
+                <div class="clearFix"></div>
+                <progress max="100" value="{{ actualStepsValue }}" style="margin-top: 2px;"></progress>
+            </div>
+            <div id="calories">
+                <div>
+                    <span style="float:left"><span style="font-size:20px">{{ actualCalories }}</span><span style="margin-left:5px;font-size:12px">calories burned</span></span><span style="float:right;color:silver;font-size:14px">{{ goalCalories }}</span>
+                </div>
+                <div class="clearFix"></div>
+                <progress max="100" value="{{ actualCaloriesValue }}" style="margin-top: 2px;"></progress>
+            </div>
+            <div id="miles">
+                <div>
+                    <span style="float:left"><span style="font-size:20px">{{ actualDistance }}</span><span style="margin-left:5px;font-size:12px">miles</span></span><span style="float:right;color:silver;font-size:14px">{{ goalDistance }}</span>
+                </div>
+                <div class="clearFix"></div>
+                <progress max="100" value="{{ actualDistanceValue }}" style="margin-top: 2px;"></progress>
+            </div>
+        </div>
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i>{{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

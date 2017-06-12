@@ -1,0 +1,44 @@
+<ion-view style="" class=" " title="{{ label.sleepView.title }}">
+    <app-header></app-header>
+    <ion-content class="has-header has-footer contentMargin" padding="false" ng-controller="sleepEditCtrl">
+
+        <div style="padding:10px 10px 5px 10px;" class="">
+
+
+
+            <ion-checkbox class="borderBottom font-size-12" ng-model="snore" style="">{{ label.sleepEditView.snoreCheckText }}</ion-checkbox>
+
+
+            <ion-checkbox class="borderBottom font-size-12" ng-model="fatigued" style="">{{ label.sleepEditView.tiredCheckText }} </ion-checkbox>
+
+            <ion-checkbox class="borderBottom font-size-12" ng-model="breathing" style="">{{ label.sleepEditView.brethingCheckText }}</ion-checkbox>
+
+            <ion-checkbox class="borderBottom font-size-12" ng-model="highBP" style="">{{ label.sleepEditView.highBPCheckText }} </ion-checkbox>
+
+            <ion-checkbox class="borderBottom font-size-12" ng-show="UserData.user.gender=='Male'" ng-model="maleCollar" style="border:none;">{{ label.sleepEditView.shirtCollarMale }} </ion-checkbox>
+
+            <ion-checkbox ng-show="UserData.user.gender=='Female'" class="borderBottom font-size-12" ng-model="femaleCollar" style="border:none;">{{ label.sleepEditView.shirtCollarFemale }} </ion-checkbox>
+
+            <a ng-click="editSleep()" class=" button button-assertive  button-block buttonColor font-size-12">{{ label.common.saveText }}</a>
+        </div>
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i> {{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>

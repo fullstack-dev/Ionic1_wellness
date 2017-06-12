@@ -1,0 +1,36 @@
+<ion-view style="" class=" " title="{{ label.lastHealthCHeckupView.title }}">
+    <app-header></app-header>
+    <ion-content class="has-header has-footer contentMargin" padding="false" ng-controller="lastHealthCheckupCtrl">
+
+        <div style="padding:10px 10px 5px 10px;">
+
+
+            <div class="" style="width:100%;">{{ label.lastHealthCHeckupView.enterHealthCheckupDate }}</div>
+            <label ng-disabled="!remember" style="border:none;padding:16px" class="item borderBottom   item-input">
+
+                <input type="month" style="left:0;background:silver;padding-left:10px" placeholder="--/--/----" name="healthDate" ng-model="healthCheckupDate" ng-disabled="remember">
+            </label>
+            <ion-checkbox class="borderBottom" ng-model="remember" ng-checked="remember" style="">{{ label.lastHealthCHeckupView.dontRemeberText }}</ion-checkbox>
+            <a ng-click="modifyDate()" class=" button button-assertive  button-block buttonColor font-size-12">{{ label.common.saveText }}</a>
+        </div>
+    </ion-content>
+    <ion-subfooter-bar class="bar bar-subfooter bar-light" ng-if="showFooter">
+        <div style="margin: auto;padding-top: 5px;text-align:center;background:#072a29">
+            <h4 class="footerText" ng-click="openLink('https://wellness.healthwizz.net/wellness/#/home/contact')">{{ label.common.footerText }}</h4>
+            <span style="margin-left:2px;" ng-click="hideFooter()"><i class="icon ion-ios-close-outline" style="color: #fff;"></i></span>
+        </div>
+    </ion-subfooter-bar>
+    <ion-footer-bar align-title="center" class="bar-positive darkGreenBackgroundFooter" ng-controller="footerCtrl">
+        <div class="tabs tabs-positive tabs-icon-top darkGreenBackgroundFooter">
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.dashboard">
+                <i class="icon ion-home"></i> {{ label.common.footerHomeText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ng-click="openLangModal()">
+                <i class="icon ion-earth"></i>{{ label.common.footerLanguageText }}
+            </a>
+            <a class="tab-item removeOpacity" nav-direction="forward" ui-sref="menu.deviceDashboard">
+                <i class="icon ion-android-wifi"></i>{{ label.common.footerDeviceText }}
+            </a>
+        </div>
+    </ion-footer-bar>
+</ion-view>
